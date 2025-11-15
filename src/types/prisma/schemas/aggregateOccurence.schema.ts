@@ -1,0 +1,14 @@
+import type { Prisma } from '@prisma/client';
+import * as z from 'zod';
+import { OccurenceOrderByWithRelationInputObjectSchema as OccurenceOrderByWithRelationInputObjectSchema } from './objects/OccurenceOrderByWithRelationInput.schema';
+import { OccurenceWhereInputObjectSchema as OccurenceWhereInputObjectSchema } from './objects/OccurenceWhereInput.schema';
+import { OccurenceWhereUniqueInputObjectSchema as OccurenceWhereUniqueInputObjectSchema } from './objects/OccurenceWhereUniqueInput.schema';
+import { OccurenceCountAggregateInputObjectSchema as OccurenceCountAggregateInputObjectSchema } from './objects/OccurenceCountAggregateInput.schema';
+import { OccurenceMinAggregateInputObjectSchema as OccurenceMinAggregateInputObjectSchema } from './objects/OccurenceMinAggregateInput.schema';
+import { OccurenceMaxAggregateInputObjectSchema as OccurenceMaxAggregateInputObjectSchema } from './objects/OccurenceMaxAggregateInput.schema';
+import { OccurenceAvgAggregateInputObjectSchema as OccurenceAvgAggregateInputObjectSchema } from './objects/OccurenceAvgAggregateInput.schema';
+import { OccurenceSumAggregateInputObjectSchema as OccurenceSumAggregateInputObjectSchema } from './objects/OccurenceSumAggregateInput.schema';
+
+export const OccurenceAggregateSchema: z.ZodType<Prisma.OccurenceAggregateArgs> = z.object({ orderBy: z.union([OccurenceOrderByWithRelationInputObjectSchema, OccurenceOrderByWithRelationInputObjectSchema.array()]).optional(), where: OccurenceWhereInputObjectSchema.optional(), cursor: OccurenceWhereUniqueInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), _count: z.union([ z.literal(true), OccurenceCountAggregateInputObjectSchema ]).optional(), _min: OccurenceMinAggregateInputObjectSchema.optional(), _max: OccurenceMaxAggregateInputObjectSchema.optional(), _avg: OccurenceAvgAggregateInputObjectSchema.optional(), _sum: OccurenceSumAggregateInputObjectSchema.optional() }).strict() as unknown as z.ZodType<Prisma.OccurenceAggregateArgs>;
+
+export const OccurenceAggregateZodSchema = z.object({ orderBy: z.union([OccurenceOrderByWithRelationInputObjectSchema, OccurenceOrderByWithRelationInputObjectSchema.array()]).optional(), where: OccurenceWhereInputObjectSchema.optional(), cursor: OccurenceWhereUniqueInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), _count: z.union([ z.literal(true), OccurenceCountAggregateInputObjectSchema ]).optional(), _min: OccurenceMinAggregateInputObjectSchema.optional(), _max: OccurenceMaxAggregateInputObjectSchema.optional(), _avg: OccurenceAvgAggregateInputObjectSchema.optional(), _sum: OccurenceSumAggregateInputObjectSchema.optional() }).strict();

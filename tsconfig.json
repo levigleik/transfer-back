@@ -1,0 +1,29 @@
+{
+	"compilerOptions": {
+		"types": ["bun", "jest"],
+		"module": "esnext",
+		"target": "es2020",
+		"moduleResolution": "bundler",
+		"declaration": true,
+		"removeComments": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"allowSyntheticDefaultImports": true,
+		"sourceMap": true,
+		"outDir": "./dist",
+		"baseUrl": "./",
+		"paths": {
+			"@/*": ["./src/*"]
+		},
+		"incremental": true,
+		"skipLibCheck": true,
+		"strictNullChecks": true,
+		"noImplicitAny": false,
+		"strictBindCallApply": false,
+		"forceConsistentCasingInFileNames": false,
+		"noFallthroughCasesInSwitch": false,
+		"resolveJsonModule": true,
+		"esModuleInterop": true,
+		"allowJs": false
+	}
+}

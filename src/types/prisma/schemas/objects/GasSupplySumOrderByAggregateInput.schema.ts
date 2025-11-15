@@ -1,0 +1,14 @@
+import * as z from 'zod';
+import type { Prisma } from '@prisma/client';
+import { SortOrderSchema } from '../enums/SortOrder.schema'
+
+const makeSchema = () => z.object({
+  id: SortOrderSchema.optional(),
+  kmToReview: SortOrderSchema.optional(),
+  kmToStop: SortOrderSchema.optional(),
+  quantity: SortOrderSchema.optional(),
+  totalPrice: SortOrderSchema.optional(),
+  gasId: SortOrderSchema.optional()
+}).strict();
+export const GasSupplySumOrderByAggregateInputObjectSchema: z.ZodType<Prisma.GasSupplySumOrderByAggregateInput> = makeSchema() as unknown as z.ZodType<Prisma.GasSupplySumOrderByAggregateInput>;
+export const GasSupplySumOrderByAggregateInputObjectZodSchema = makeSchema();

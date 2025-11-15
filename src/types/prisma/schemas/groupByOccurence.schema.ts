@@ -1,0 +1,15 @@
+import type { Prisma } from '@prisma/client';
+import * as z from 'zod';
+import { OccurenceWhereInputObjectSchema as OccurenceWhereInputObjectSchema } from './objects/OccurenceWhereInput.schema';
+import { OccurenceOrderByWithAggregationInputObjectSchema as OccurenceOrderByWithAggregationInputObjectSchema } from './objects/OccurenceOrderByWithAggregationInput.schema';
+import { OccurenceScalarWhereWithAggregatesInputObjectSchema as OccurenceScalarWhereWithAggregatesInputObjectSchema } from './objects/OccurenceScalarWhereWithAggregatesInput.schema';
+import { OccurenceScalarFieldEnumSchema } from './enums/OccurenceScalarFieldEnum.schema';
+import { OccurenceCountAggregateInputObjectSchema as OccurenceCountAggregateInputObjectSchema } from './objects/OccurenceCountAggregateInput.schema';
+import { OccurenceMinAggregateInputObjectSchema as OccurenceMinAggregateInputObjectSchema } from './objects/OccurenceMinAggregateInput.schema';
+import { OccurenceMaxAggregateInputObjectSchema as OccurenceMaxAggregateInputObjectSchema } from './objects/OccurenceMaxAggregateInput.schema';
+import { OccurenceAvgAggregateInputObjectSchema as OccurenceAvgAggregateInputObjectSchema } from './objects/OccurenceAvgAggregateInput.schema';
+import { OccurenceSumAggregateInputObjectSchema as OccurenceSumAggregateInputObjectSchema } from './objects/OccurenceSumAggregateInput.schema';
+
+export const OccurenceGroupBySchema: z.ZodType<Prisma.OccurenceGroupByArgs> = z.object({ where: OccurenceWhereInputObjectSchema.optional(), orderBy: z.union([OccurenceOrderByWithAggregationInputObjectSchema, OccurenceOrderByWithAggregationInputObjectSchema.array()]).optional(), having: OccurenceScalarWhereWithAggregatesInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), by: z.array(OccurenceScalarFieldEnumSchema), _count: z.union([ z.literal(true), OccurenceCountAggregateInputObjectSchema ]).optional(), _min: OccurenceMinAggregateInputObjectSchema.optional(), _max: OccurenceMaxAggregateInputObjectSchema.optional(), _avg: OccurenceAvgAggregateInputObjectSchema.optional(), _sum: OccurenceSumAggregateInputObjectSchema.optional() }).strict() as unknown as z.ZodType<Prisma.OccurenceGroupByArgs>;
+
+export const OccurenceGroupByZodSchema = z.object({ where: OccurenceWhereInputObjectSchema.optional(), orderBy: z.union([OccurenceOrderByWithAggregationInputObjectSchema, OccurenceOrderByWithAggregationInputObjectSchema.array()]).optional(), having: OccurenceScalarWhereWithAggregatesInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), by: z.array(OccurenceScalarFieldEnumSchema), _count: z.union([ z.literal(true), OccurenceCountAggregateInputObjectSchema ]).optional(), _min: OccurenceMinAggregateInputObjectSchema.optional(), _max: OccurenceMaxAggregateInputObjectSchema.optional(), _avg: OccurenceAvgAggregateInputObjectSchema.optional(), _sum: OccurenceSumAggregateInputObjectSchema.optional() }).strict();

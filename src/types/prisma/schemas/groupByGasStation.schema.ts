@@ -1,0 +1,15 @@
+import type { Prisma } from '@prisma/client';
+import * as z from 'zod';
+import { GasStationWhereInputObjectSchema as GasStationWhereInputObjectSchema } from './objects/GasStationWhereInput.schema';
+import { GasStationOrderByWithAggregationInputObjectSchema as GasStationOrderByWithAggregationInputObjectSchema } from './objects/GasStationOrderByWithAggregationInput.schema';
+import { GasStationScalarWhereWithAggregatesInputObjectSchema as GasStationScalarWhereWithAggregatesInputObjectSchema } from './objects/GasStationScalarWhereWithAggregatesInput.schema';
+import { GasStationScalarFieldEnumSchema } from './enums/GasStationScalarFieldEnum.schema';
+import { GasStationCountAggregateInputObjectSchema as GasStationCountAggregateInputObjectSchema } from './objects/GasStationCountAggregateInput.schema';
+import { GasStationMinAggregateInputObjectSchema as GasStationMinAggregateInputObjectSchema } from './objects/GasStationMinAggregateInput.schema';
+import { GasStationMaxAggregateInputObjectSchema as GasStationMaxAggregateInputObjectSchema } from './objects/GasStationMaxAggregateInput.schema';
+import { GasStationAvgAggregateInputObjectSchema as GasStationAvgAggregateInputObjectSchema } from './objects/GasStationAvgAggregateInput.schema';
+import { GasStationSumAggregateInputObjectSchema as GasStationSumAggregateInputObjectSchema } from './objects/GasStationSumAggregateInput.schema';
+
+export const GasStationGroupBySchema: z.ZodType<Prisma.GasStationGroupByArgs> = z.object({ where: GasStationWhereInputObjectSchema.optional(), orderBy: z.union([GasStationOrderByWithAggregationInputObjectSchema, GasStationOrderByWithAggregationInputObjectSchema.array()]).optional(), having: GasStationScalarWhereWithAggregatesInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), by: z.array(GasStationScalarFieldEnumSchema), _count: z.union([ z.literal(true), GasStationCountAggregateInputObjectSchema ]).optional(), _min: GasStationMinAggregateInputObjectSchema.optional(), _max: GasStationMaxAggregateInputObjectSchema.optional(), _avg: GasStationAvgAggregateInputObjectSchema.optional(), _sum: GasStationSumAggregateInputObjectSchema.optional() }).strict() as unknown as z.ZodType<Prisma.GasStationGroupByArgs>;
+
+export const GasStationGroupByZodSchema = z.object({ where: GasStationWhereInputObjectSchema.optional(), orderBy: z.union([GasStationOrderByWithAggregationInputObjectSchema, GasStationOrderByWithAggregationInputObjectSchema.array()]).optional(), having: GasStationScalarWhereWithAggregatesInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), by: z.array(GasStationScalarFieldEnumSchema), _count: z.union([ z.literal(true), GasStationCountAggregateInputObjectSchema ]).optional(), _min: GasStationMinAggregateInputObjectSchema.optional(), _max: GasStationMaxAggregateInputObjectSchema.optional(), _avg: GasStationAvgAggregateInputObjectSchema.optional(), _sum: GasStationSumAggregateInputObjectSchema.optional() }).strict();

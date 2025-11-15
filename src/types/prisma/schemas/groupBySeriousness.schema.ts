@@ -1,0 +1,15 @@
+import type { Prisma } from '@prisma/client';
+import * as z from 'zod';
+import { SeriousnessWhereInputObjectSchema as SeriousnessWhereInputObjectSchema } from './objects/SeriousnessWhereInput.schema';
+import { SeriousnessOrderByWithAggregationInputObjectSchema as SeriousnessOrderByWithAggregationInputObjectSchema } from './objects/SeriousnessOrderByWithAggregationInput.schema';
+import { SeriousnessScalarWhereWithAggregatesInputObjectSchema as SeriousnessScalarWhereWithAggregatesInputObjectSchema } from './objects/SeriousnessScalarWhereWithAggregatesInput.schema';
+import { SeriousnessScalarFieldEnumSchema } from './enums/SeriousnessScalarFieldEnum.schema';
+import { SeriousnessCountAggregateInputObjectSchema as SeriousnessCountAggregateInputObjectSchema } from './objects/SeriousnessCountAggregateInput.schema';
+import { SeriousnessMinAggregateInputObjectSchema as SeriousnessMinAggregateInputObjectSchema } from './objects/SeriousnessMinAggregateInput.schema';
+import { SeriousnessMaxAggregateInputObjectSchema as SeriousnessMaxAggregateInputObjectSchema } from './objects/SeriousnessMaxAggregateInput.schema';
+import { SeriousnessAvgAggregateInputObjectSchema as SeriousnessAvgAggregateInputObjectSchema } from './objects/SeriousnessAvgAggregateInput.schema';
+import { SeriousnessSumAggregateInputObjectSchema as SeriousnessSumAggregateInputObjectSchema } from './objects/SeriousnessSumAggregateInput.schema';
+
+export const SeriousnessGroupBySchema: z.ZodType<Prisma.SeriousnessGroupByArgs> = z.object({ where: SeriousnessWhereInputObjectSchema.optional(), orderBy: z.union([SeriousnessOrderByWithAggregationInputObjectSchema, SeriousnessOrderByWithAggregationInputObjectSchema.array()]).optional(), having: SeriousnessScalarWhereWithAggregatesInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), by: z.array(SeriousnessScalarFieldEnumSchema), _count: z.union([ z.literal(true), SeriousnessCountAggregateInputObjectSchema ]).optional(), _min: SeriousnessMinAggregateInputObjectSchema.optional(), _max: SeriousnessMaxAggregateInputObjectSchema.optional(), _avg: SeriousnessAvgAggregateInputObjectSchema.optional(), _sum: SeriousnessSumAggregateInputObjectSchema.optional() }).strict() as unknown as z.ZodType<Prisma.SeriousnessGroupByArgs>;
+
+export const SeriousnessGroupByZodSchema = z.object({ where: SeriousnessWhereInputObjectSchema.optional(), orderBy: z.union([SeriousnessOrderByWithAggregationInputObjectSchema, SeriousnessOrderByWithAggregationInputObjectSchema.array()]).optional(), having: SeriousnessScalarWhereWithAggregatesInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), by: z.array(SeriousnessScalarFieldEnumSchema), _count: z.union([ z.literal(true), SeriousnessCountAggregateInputObjectSchema ]).optional(), _min: SeriousnessMinAggregateInputObjectSchema.optional(), _max: SeriousnessMaxAggregateInputObjectSchema.optional(), _avg: SeriousnessAvgAggregateInputObjectSchema.optional(), _sum: SeriousnessSumAggregateInputObjectSchema.optional() }).strict();
