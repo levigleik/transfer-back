@@ -35,10 +35,6 @@ const createRedisClient = (): Redis => {
 		? new Redis(url, { lazyConnect: true })
 		: new Redis(getRedisOptions());
 
-	client.on("connect", () => {
-		logger.info("Redis connecting...");
-	});
-
 	client.on("ready", () => {
 		logger.info("Redis connection ready ✅");
 	});
