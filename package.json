@@ -18,9 +18,6 @@
 		"prisma_deploy:prod": "bun run --env-file=.env.production bunx prisma migrate deploy",
 		"prisma_reset:dev": "bun run --env-file=.env.development bunx prisma migrate reset"
 	},
-	"prisma": {
-		"seed": "bun run prisma/seed.ts"
-	},
 	"author": "levigleik",
 	"license": "ISC",
 	"dependencies": {

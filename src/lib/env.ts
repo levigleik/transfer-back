@@ -9,16 +9,6 @@ const envSchema = z
 
 		DATABASE_URL: z.url({ message: "DATABASE_URL inválida." }),
 
-		ADMIN_EMAIL: z.email(),
-		ADMIN_PASSWORD: z.string().min(8),
-
-		JWT_SECRET: z
-			.string()
-			.min(32, { message: "JWT_SECRET deve ter no mínimo 32 caracteres." }),
-		JWT_REFRESH_SECRET: z.string().min(32, {
-			message: "JWT_REFRESH_SECRET deve ter no mínimo 32 caracteres.",
-		}),
-
 		REDIS_URL: z.url().optional(),
 		REDIS_HOST: z.string().optional(),
 		REDIS_PORT: z.coerce.number().int().positive().optional(),

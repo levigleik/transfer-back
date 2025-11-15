@@ -27,21 +27,21 @@
         }
       }
     },
-    "/user": {
+    "/gasStation": {
       "get": {
         "tags": [
-          "User"
+          "GasStation"
         ],
         "description": "",
         "responses": {
           "200": {
-            "description": "Users found",
+            "description": "GasStations found",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/PublicUser"
+                    "$ref": "#/components/schemas/PublicGasStation"
                   },
                   "xml": {
                     "name": "main"
@@ -52,7 +52,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/PublicUser"
+                    "$ref": "#/components/schemas/PublicGasStation"
                   },
                   "xml": {
                     "name": "main"
@@ -70,21 +70,21 @@
       },
       "post": {
         "tags": [
-          "User"
+          "GasStation"
         ],
         "description": "",
         "responses": {
           "201": {
-            "description": "User created",
+            "description": "GasStation created",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicUser"
+                  "$ref": "#/components/schemas/PublicGasStation"
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicUser"
+                  "$ref": "#/components/schemas/PublicGasStation"
                 }
               }
             }
@@ -100,22 +100,22 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/createUser"
+                "$ref": "#/components/schemas/createGasStation"
               }
             },
             "application/xml": {
               "schema": {
-                "$ref": "#/components/schemas/createUser"
+                "$ref": "#/components/schemas/createGasStation"
               }
             }
           }
         }
       }
     },
-    "/user/{id}": {
+    "/gasStation/{id}": {
       "get": {
         "tags": [
-          "User"
+          "GasStation"
         ],
         "description": "",
         "parameters": [
@@ -130,22 +130,22 @@
         ],
         "responses": {
           "200": {
-            "description": "User found",
+            "description": "GasStation found",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicUser"
+                  "$ref": "#/components/schemas/PublicGasStation"
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicUser"
+                  "$ref": "#/components/schemas/PublicGasStation"
                 }
               }
             }
           },
           "404": {
-            "description": "User not found"
+            "description": "GasStation not found"
           }
         },
         "security": [
@@ -156,7 +156,7 @@
       },
       "put": {
         "tags": [
-          "User"
+          "GasStation"
         ],
         "description": "",
         "parameters": [
@@ -171,22 +171,22 @@
         ],
         "responses": {
           "200": {
-            "description": "User updated",
+            "description": "GasStation updated",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicUser"
+                  "$ref": "#/components/schemas/PublicGasStation"
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicUser"
+                  "$ref": "#/components/schemas/PublicGasStation"
                 }
               }
             }
           },
           "404": {
-            "description": "User not found"
+            "description": "GasStation not found"
           }
         },
         "security": [
@@ -199,12 +199,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/updateUser"
+                "$ref": "#/components/schemas/updateGasStation"
               }
             },
             "application/xml": {
               "schema": {
-                "$ref": "#/components/schemas/updateUser"
+                "$ref": "#/components/schemas/updateGasStation"
               }
             }
           }
@@ -212,7 +212,7 @@
       },
       "delete": {
         "tags": [
-          "User"
+          "GasStation"
         ],
         "description": "",
         "parameters": [
@@ -227,16 +227,16 @@
         ],
         "responses": {
           "200": {
-            "description": "User deleted",
+            "description": "GasStation deleted",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicUser"
+                  "$ref": "#/components/schemas/PublicGasStation"
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublicUser"
+                  "$ref": "#/components/schemas/PublicGasStation"
                 }
               }
             }
@@ -245,144 +245,7 @@
             "description": "No Content"
           },
           "404": {
-            "description": "User not found"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      }
-    },
-    "/auth/admin": {
-      "post": {
-        "tags": [
-          "Auth"
-        ],
-        "description": "",
-        "responses": {
-          "201": {
-            "description": "User created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicUser"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/PublicUser"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/createAdmin"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/createAdmin"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/auth/login": {
-      "post": {
-        "tags": [
-          "Auth"
-        ],
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "Login successful",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/loginResponse"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/loginResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Invalid credentials"
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/login"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/login"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/auth/refresh-token": {
-      "post": {
-        "tags": [
-          "Auth"
-        ],
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "201": {
-            "description": "Token refreshed",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/idToken"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/idToken"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      }
-    },
-    "/auth/logout": {
-      "post": {
-        "tags": [
-          "Auth"
-        ],
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "201": {
-            "description": "User logged out"
+            "description": "GasStation not found"
           }
         },
         "security": [
@@ -401,7 +264,7 @@
       }
     },
     "schemas": {
-      "PublicUser": {
+      "GasStation": {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "type": "object",
         "properties": {
@@ -410,21 +273,8 @@
             "minimum": -9007199254740991,
             "maximum": 9007199254740991
           },
-          "email": {
-            "type": "string"
-          },
           "name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "active": {
-            "type": "boolean"
+            "type": "string"
           },
           "createdAt": {
             "type": "string",
@@ -439,14 +289,13 @@
         },
         "required": [
           "id",
-          "email",
-          "active",
+          "name",
           "createdAt",
           "updatedAt"
         ],
         "additionalProperties": false
       },
-      "User": {
+      "PublicGasStation": {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "type": "object",
         "properties": {
@@ -455,24 +304,8 @@
             "minimum": -9007199254740991,
             "maximum": 9007199254740991
           },
-          "email": {
-            "type": "string"
-          },
           "name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "password": {
             "type": "string"
-          },
-          "active": {
-            "type": "boolean"
           },
           "createdAt": {
             "type": "string",
@@ -487,158 +320,33 @@
         },
         "required": [
           "id",
-          "email",
-          "password",
-          "active",
+          "name",
           "createdAt",
           "updatedAt"
         ],
         "additionalProperties": false
       },
-      "createUser": {
+      "createGasStation": {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "type": "object",
         "properties": {
-          "email": {
-            "type": "string",
-            "format": "email",
-            "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
-          },
           "name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "password": {
             "type": "string"
           }
         },
         "required": [
-          "email",
-          "password"
-        ],
-        "additionalProperties": false
-      },
-      "updateUser": {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "type": "object",
-        "properties": {
-          "name": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "additionalProperties": false
-      },
-      "createAdmin": {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "format": "email",
-            "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
-          },
-          "password": {
-            "type": "string",
-            "minLength": 6
-          },
-          "name": {
-            "type": "string",
-            "minLength": 1
-          }
-        },
-        "required": [
-          "email",
-          "password",
           "name"
         ],
         "additionalProperties": false
       },
-      "idToken": {
+      "updateGasStation": {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "type": "object",
         "properties": {
-          "idToken": {
+          "name": {
             "type": "string"
           }
         },
-        "required": [
-          "idToken"
-        ],
-        "additionalProperties": false
-      },
-      "loginResponse": {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "type": "object",
-        "properties": {
-          "idToken": {
-            "type": "string"
-          },
-          "user": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "integer",
-                "minimum": -9007199254740991,
-                "maximum": 9007199254740991
-              },
-              "name": {
-                "anyOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
-              },
-              "email": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "id",
-              "email"
-            ],
-            "additionalProperties": false
-          }
-        },
-        "required": [
-          "idToken",
-          "user"
-        ],
-        "additionalProperties": false
-      },
-      "login": {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "format": "email",
-            "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
-          },
-          "password": {
-            "type": "string",
-            "minLength": 1
-          }
-        },
-        "required": [
-          "email",
-          "password"
-        ],
         "additionalProperties": false
       }
     }
