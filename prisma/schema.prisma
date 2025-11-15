@@ -82,7 +82,8 @@ model Brand {
 }
 
 model Gas {
-  id   Int    @id @default(autoincrement())
+  id Int @id @default(autoincrement())
+
   type String
 
   vehicle     Vehicle[]
@@ -97,14 +98,14 @@ model Documentation {
 
   type              String
   expiryAt          DateTime
-  antecipateRenewal Boolean  @default(false)
+  anticipateRenewal Boolean  @default(false)
   days              String[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-model Occurence {
+model Occurrence {
   id Int @id @default(autoincrement())
 
   date        DateTime
@@ -123,7 +124,7 @@ model Classification {
   id Int @id @default(autoincrement())
 
   description String
-  occurences  Occurence[]
+  occurences  Occurrence[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -134,7 +135,7 @@ model Seriousness {
 
   level String
 
-  occurences Occurence[]
+  occurences Occurrence[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

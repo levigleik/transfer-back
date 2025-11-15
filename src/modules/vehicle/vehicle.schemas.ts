@@ -1,0 +1,50 @@
+import { VehicleSchema } from "@/types/prisma/schemas";
+import type { z } from "zod";
+
+export const PublicVehicleSchema = VehicleSchema;
+
+export { VehicleSchema };
+
+export const createVehicleSchema = VehicleSchema.pick({
+	identifier: true,
+	model: true,
+	year: true,
+	capacity: true,
+	doors: true,
+	uf: true,
+	plateType: true,
+	plate: true,
+	renavam: true,
+	chassis: true,
+	review: true,
+	description: true,
+	photos: true,
+	gasId: true,
+	companyId: true,
+	categoryId: true,
+	brandId: true,
+});
+
+export const updateVehicleSchema = VehicleSchema.pick({
+	identifier: true,
+	model: true,
+	year: true,
+	capacity: true,
+	doors: true,
+	uf: true,
+	plateType: true,
+	plate: true,
+	renavam: true,
+	chassis: true,
+	review: true,
+	description: true,
+	photos: true,
+	gasId: true,
+	companyId: true,
+	categoryId: true,
+	brandId: true,
+}).partial();
+
+export type CreateVehicleDTO = z.infer<typeof createVehicleSchema>;
+export type UpdateVehicleDTO = z.infer<typeof updateVehicleSchema>;
+export type PublicVehicle = z.infer<typeof PublicVehicleSchema>;
