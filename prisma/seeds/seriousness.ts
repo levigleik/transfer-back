@@ -1,16 +1,20 @@
 import type { CreateSeriousnessDTO } from "@/modules/seriousness/seriousness.schemas";
 
 export const seriousness = [
-	{
-		level: "Baixa",
-	},
-	{
-		level: "Média",
-	},
-	{
-		level: "Alta",
-	},
-	{
-		level: "Grave",
-	},
-] as CreateSeriousnessDTO[];
+  {
+    id: 1,
+    level: 'Baixa'
+  },
+  {
+    id: 2,
+    level: 'Média'
+  },
+  {
+    id: 3,
+    level: 'Alta'
+  },
+  {
+    id: 4,
+    level: 'Grave'
+  }
+] as (CreateSeriousnessDTO & { id: number })[];

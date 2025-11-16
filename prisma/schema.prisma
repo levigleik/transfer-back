@@ -31,7 +31,7 @@ model Vehicle {
   plateType   PlateType
   plate       String
   renavam     String    @unique
-  chassis     String    @unique
+  chassi      String    @unique
   review      Int
   description String?
   photos      String[]

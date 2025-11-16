@@ -2,6 +2,8 @@
 	"name": "transfer",
 	"version": "1.0.0",
 	"description": "Transfer Pass",
+	"author": "levigleik",
+	"license": "ISC",
 	"scripts": {
 		"build": "bunx tsc --project tsconfig.json && bunx tsc-alias -p tsconfig.json",
 		"dev": "bun run --env-file=.env.development --watch src/index.ts",
@@ -17,10 +19,12 @@
 		"prisma_migrate:dev": "bun run --env-file=.env.development bunx prisma migrate dev",
 		"prisma_deploy:dev": "bun run --env-file=.env.development bunx prisma migrate deploy",
 		"prisma_deploy:prod": "bun run --env-file=.env.production bunx prisma migrate deploy",
-		"prisma_reset:dev": "bun run --env-file=.env.development bunx prisma migrate reset"
+		"prisma_reset:dev": "bun run --env-file=.env.development bunx prisma migrate reset",
+		"db:seed": "bun run prisma/seed.ts"
 	},
-	"author": "levigleik",
-	"license": "ISC",
+	"prisma": {
+		"seed": "bun run prisma/seed.ts"
+	},
 	"dependencies": {
 		"@prisma/client": "^6.16.3",
 		"@scalar/express-api-reference": "^0.8.22",

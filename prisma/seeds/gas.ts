@@ -1,13 +1,16 @@
 import type { CreateGasDTO } from "@/modules/gas/gas.schemas";
 
 export const gas = [
-	{
-		type: "Diesel",
-	},
-	{
-		type: "Etanol",
-	},
-	{
-		type: "Gasolina",
-	},
-] as CreateGasDTO[];
+  {
+    id: 1,
+    type: 'Diesel'
+  },
+  {
+    id: 2,
+    type: 'Etanol'
+  },
+  {
+    id: 3,
+    type: 'Gasolina'
+  }
+] as (CreateGasDTO & { id: number })[];

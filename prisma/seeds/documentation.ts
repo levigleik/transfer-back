@@ -12,27 +12,31 @@ const weekDays = ["dom", "seg", "ter", "qua", "qui", "sex", "sáb"];
 
 export const documentation = [
 	{
+		id: 1,
 		type: faker.helpers.arrayElement(documentationTypes),
 		expiryAt: faker.date.future(),
 		anticipateRenewal: true,
 		days: faker.helpers.arrayElements(weekDays, { min: 1, max: 4 }),
 	},
 	{
+		id: 2,
 		type: faker.helpers.arrayElement(documentationTypes),
 		expiryAt: faker.date.future(),
 		anticipateRenewal: false,
 		days: faker.helpers.arrayElements(weekDays, { min: 3, max: 6 }),
 	},
 	{
+		id: 3,
 		type: faker.helpers.arrayElement(documentationTypes),
 		expiryAt: faker.date.future(),
 		anticipateRenewal: false,
 		days: faker.helpers.arrayElements(weekDays, 2),
 	},
 	{
+		id: 4,
 		type: faker.helpers.arrayElement(documentationTypes),
 		expiryAt: faker.date.future(),
 		anticipateRenewal: true,
 		days: faker.helpers.arrayElements(weekDays, 1),
 	},
-] as CreateDocumentationDTO[];
+] as (CreateDocumentationDTO & { id: number })[];

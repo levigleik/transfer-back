@@ -1,13 +1,16 @@
 import type { CreateClassificationDTO } from "@/modules/classification/classification.schemas";
 
 export const classification = [
-	{
-		description: "Premium",
-	},
-	{
-		description: "Master",
-	},
-	{
-		description: "Standard",
-	},
-] as CreateClassificationDTO[];
+  {
+    id: 1,
+    description: 'Premium'
+  },
+  {
+    id: 2,
+    description: 'Master'
+  },
+  {
+    id: 3,
+    description: 'Standard'
+  }
+] as (CreateClassificationDTO & { id: number })[];

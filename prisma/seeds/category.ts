@@ -1,16 +1,16 @@
 import type { CreateCategoryDTO } from "@/modules/category/category.schemas";
-import { faker } from "@faker-js/faker/locale/pt_BR";
-
-const onibusTypes = ["Ônibus", "Micro-Ônibus", "Caminhão"];
 
 export const category = [
 	{
-		name: faker.helpers.arrayElement(onibusTypes),
+		id: 1,
+		name: "Ônibus",
 	},
 	{
-		name: faker.helpers.arrayElement(onibusTypes),
+		id: 2,
+		name: "Micro-Ônibus",
 	},
 	{
-		name: faker.helpers.arrayElement(onibusTypes),
+		id: 3,
+		name: "Caminhão",
 	},
-] as CreateCategoryDTO[];
+] as (CreateCategoryDTO & { id: number })[];

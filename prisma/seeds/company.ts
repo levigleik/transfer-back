@@ -12,23 +12,28 @@ const companyNames = [
 
 export const company = [
 	{
+		id: 1,
 		name: faker.helpers.arrayElement(companyNames),
 		cnpj: generateCNPJ(),
 	},
 	{
+		id: 2,
 		name: faker.helpers.arrayElement(companyNames),
 		cnpj: generateCNPJ(),
 	},
 	{
+		id: 3,
 		name: faker.helpers.arrayElement(companyNames),
 		cnpj: generateCNPJ(),
 	},
 	{
+		id: 4,
 		name: faker.helpers.arrayElement(companyNames),
 		cnpj: generateCNPJ(),
 	},
 	{
+		id: 5,
 		name: faker.helpers.arrayElement(companyNames),
 		cnpj: generateCNPJ(),
 	},
-] as CreateCompanyDTO[];
+] as (CreateCompanyDTO & { id: number })[];
