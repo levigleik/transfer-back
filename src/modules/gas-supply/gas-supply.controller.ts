@@ -77,7 +77,18 @@ const createGasSupply = async (
 		}
 	*/
 	const gasSupply = req.body as CreateGasSupplyDTO;
-	const savedGasSupply = await gasSupplyService.create({ data: gasSupply });
+	const savedGasSupply = await gasSupplyService.create({
+		data: {
+			kmToReview: gasSupply.kmToReview,
+			kmToStop: gasSupply.kmToStop,
+			quantity: gasSupply.quantity,
+			supplyAt: gasSupply.supplyAt,
+			totalPrice: gasSupply.totalPrice,
+			gas: {
+				connect: { id: gasSupply.gasId },
+			},
+		},
+	});
 	res.status(201).json(savedGasSupply);
 };
 

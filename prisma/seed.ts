@@ -14,7 +14,7 @@ async function main() {
 	for (const data of seeds.brand) {
 		await prisma.brand.upsert({
 			where: { id: data.id, name: data.name },
-			update: {},
+			update: data,
 			create: data,
 		});
 	}
@@ -23,7 +23,7 @@ async function main() {
 	for (const data of seeds.category) {
 		await prisma.category.upsert({
 			where: { id: data.id, name: data.name },
-			update: {},
+			update: data,
 			create: data,
 		});
 	}
@@ -32,7 +32,7 @@ async function main() {
 	for (const data of seeds.classification) {
 		await prisma.classification.upsert({
 			where: { id: data.id },
-			update: {},
+			update: data,
 			create: data,
 		});
 	}
@@ -40,7 +40,7 @@ async function main() {
 	for (const data of seeds.company) {
 		await prisma.company.upsert({
 			where: { id: data.id, cnpj: data.cnpj },
-			update: {},
+			update: data,
 			create: data,
 		});
 	}
@@ -49,7 +49,7 @@ async function main() {
 	for (const data of seeds.documentation) {
 		await prisma.documentation.upsert({
 			where: { id: data.id },
-			update: {},
+			update: data,
 			create: data,
 		});
 	}
@@ -58,7 +58,7 @@ async function main() {
 	for (const data of seeds.gas) {
 		await prisma.gas.upsert({
 			where: { id: data.id },
-			update: {},
+			update: data,
 			create: data,
 		});
 	}
@@ -67,7 +67,7 @@ async function main() {
 	for (const data of seeds.gasStation) {
 		await prisma.gasStation.upsert({
 			where: { id: data.id },
-			update: {},
+			update: data,
 			create: data,
 		});
 	}
@@ -76,7 +76,7 @@ async function main() {
 	for (const data of seeds.seriousness) {
 		await prisma.seriousness.upsert({
 			where: { id: data.id },
-			update: {},
+			update: data,
 			create: data,
 		});
 	}
@@ -85,7 +85,7 @@ async function main() {
 	for (const data of seeds.status) {
 		await prisma.status.upsert({
 			where: { id: data.id },
-			update: {},
+			update: data,
 			create: data,
 		});
 	}
@@ -98,7 +98,7 @@ async function main() {
 	for (const data of seeds.gasSupply) {
 		await prisma.gasSupply.upsert({
 			where: { id: data.id },
-			update: {},
+			update: data,
 			create: data,
 		});
 	}
@@ -107,7 +107,7 @@ async function main() {
 	for (const data of seeds.occurrence) {
 		await prisma.occurrence.upsert({
 			where: { id: data.id },
-			update: {},
+			update: data,
 			create: data,
 		});
 	}
@@ -120,7 +120,7 @@ async function main() {
 				chassi: data.chassi,
 				identifier: data.identifier,
 			},
-			update: {},
+			update: data,
 			create: data,
 		});
 	}
