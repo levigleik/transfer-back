@@ -8,6 +8,7 @@ import gasRouter from "@/modules/gas/gas.routes";
 import healthRouter from "@/modules/health/health.routes";
 import occurrenceRouter from "@/modules/occurrence/occurrence.routes";
 import seriousnessRouter from "@/modules/seriousness/seriousness.routes";
+import statusRouter from "@/modules/status/status.routes";
 import vehicleRouter from "@/modules/vehicle/vehicle.routes";
 import express from "express";
 
@@ -24,6 +25,7 @@ router.use(gasStationRouter);
 router.use(gasSupplyRouter);
 router.use(occurrenceRouter);
 router.use(seriousnessRouter);
+router.use(statusRouter);
 router.use(vehicleRouter);
 
 export { router };
