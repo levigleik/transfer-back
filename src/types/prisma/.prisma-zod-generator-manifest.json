@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "generatorVersion": "1.0.0",
-  "generatedAt": "2025-11-17T18:28:46.766Z",
+  "generatedAt": "2025-11-17T22:07:48.873Z",
   "outputPath": "/home/levi/projects/node/transfer/src/types/prisma",
   "files": [
     "schemas/enums/TransactionIsolationLevel.schema.ts",

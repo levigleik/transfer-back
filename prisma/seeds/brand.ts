@@ -4,18 +4,18 @@ import { faker } from "@faker-js/faker/locale/pt_BR";
 export const brand = [
 	{
 		id: 1,
-		name: faker.vehicle.manufacturer(),
+		name: "Scania",
 	},
 	{
 		id: 2,
-		name: faker.vehicle.manufacturer(),
+		name: "Merdes-Benz",
 	},
 	{
 		id: 3,
-		name: faker.vehicle.manufacturer(),
+		name: "Volvo",
 	},
 	{
 		id: 4,
-		name: faker.vehicle.manufacturer(),
+		name: "Ford",
 	},
 ] as (CreateBrandDTO & { id: number })[];
