@@ -19,8 +19,7 @@
 		"prisma_migrate:dev": "bun run --env-file=.env.development bunx prisma migrate dev",
 		"prisma_deploy:dev": "bun run --env-file=.env.development bunx prisma migrate deploy",
 		"prisma_deploy:prod": "bun run --env-file=.env.production bunx prisma migrate deploy",
-		"prisma_reset:dev": "bun run --env-file=.env.development bunx prisma migrate reset",
-		"db:seed": "bun run prisma/seed.ts"
+		"prisma_reset:dev": "bun run --env-file=.env.development bunx prisma migrate reset"
 	},
 	"prisma": {
 		"seed": "bun run prisma/seed.ts"

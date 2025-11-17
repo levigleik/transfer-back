@@ -23,6 +23,8 @@ export const createVehicleSchema = VehicleSchema.pick({
 	companyId: true,
 	categoryId: true,
 	brandId: true,
+	classificationId: true,
+	statusId: true,
 });
 
 export const updateVehicleSchema = VehicleSchema.pick({
@@ -43,6 +45,8 @@ export const updateVehicleSchema = VehicleSchema.pick({
 	companyId: true,
 	categoryId: true,
 	brandId: true,
+	classificationId: true,
+	statusId: true,
 }).partial();
 
 export type CreateVehicleDTO = z.infer<typeof createVehicleSchema>;

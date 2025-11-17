@@ -94,9 +94,15 @@ export function createCachedService<
 	};
 
 	const create = async (args: CreateArgs): Promise<T> => {
-		const newItem = await prismaDelegate.create(args);
-		await invalidateListCache();
-		return newItem;
+		try {
+			const newItem = await prismaDelegate.create(args);
+
+			await invalidateListCache();
+			return newItem;
+		} catch (error) {
+			console.log(error);
+		}
+		return "";
 	};
 
 	const update = async (args: UpdateArgs): Promise<T> => {

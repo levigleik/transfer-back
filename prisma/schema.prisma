@@ -36,14 +36,18 @@ model Vehicle {
   description String?
   photos      String[]
 
-  gas        Gas      @relation(fields: [gasId], references: [id])
-  gasId      Int
-  brand      Brand    @relation(fields: [brandId], references: [id])
-  brandId    Int
-  category   Category @relation(fields: [categoryId], references: [id])
-  categoryId Int
-  company    Company  @relation(fields: [companyId], references: [id])
-  companyId  Int
+  gas              Gas            @relation(fields: [gasId], references: [id])
+  gasId            Int
+  brand            Brand          @relation(fields: [brandId], references: [id])
+  brandId          Int
+  classification   Classification @relation(fields: [classificationId], references: [id])
+  classificationId Int
+  category         Category       @relation(fields: [categoryId], references: [id])
+  categoryId       Int
+  company          Company        @relation(fields: [companyId], references: [id])
+  companyId        Int
+  status           Status         @relation(fields: [statusId], references: [id])
+  statusId         Int
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -125,6 +129,7 @@ model Classification {
 
   description String
   occurences  Occurrence[]
+  vehicles    Vehicle[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -170,6 +175,8 @@ model Status {
   id Int @id @default(autoincrement())
 
   name String
+
+  vehicles Vehicle[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

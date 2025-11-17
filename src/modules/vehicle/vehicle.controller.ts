@@ -3,6 +3,7 @@ import { getQuery } from "@/lib/query";
 import type { NextFunction, Request, Response } from "express";
 import type { CreateVehicleDTO, UpdateVehicleDTO } from "./vehicle.schemas";
 import { vehicleService } from "./vehicle.service";
+import { connect } from "http2";
 
 const getOneVehicle = async (
 	req: Request,
@@ -96,6 +97,12 @@ const createVehicle = async (
 			},
 			category: {
 				connect: { id: vehicle.categoryId },
+			},
+			classification: {
+				connect: { id: vehicle.classificationId },
+			},
+			status: {
+				connect: { id: vehicle.statusId },
 			},
 		},
 	});

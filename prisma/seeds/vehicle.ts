@@ -6,6 +6,8 @@ import { brand } from "./brand";
 import { category } from "./category";
 import { company } from "./company";
 import { gas } from "./gas";
+import { classification } from "./classification";
+import { status } from "./status";
 
 const plateTypes = Object.keys(PlateType);
 
@@ -13,6 +15,8 @@ const gasIds = gas.map((g) => g.id);
 const brandIds = brand.map((b) => b.id);
 const categoryIds = category.map((c) => c.id);
 const companyIds = company.map((c) => c.id);
+const classificationIds = classification.map((c) => c.id);
+const statusIds = status.map((s) => s.id);
 
 export const vehicle = [
 	{
@@ -34,6 +38,8 @@ export const vehicle = [
 		brandId: faker.helpers.arrayElement(brandIds),
 		categoryId: faker.helpers.arrayElement(categoryIds),
 		companyId: faker.helpers.arrayElement(companyIds),
+		classificationId: faker.helpers.arrayElement(classificationIds),
+		statusId: faker.helpers.arrayElement(statusIds),
 	},
 	{
 		id: 2,
@@ -54,6 +60,8 @@ export const vehicle = [
 		brandId: faker.helpers.arrayElement(brandIds),
 		categoryId: faker.helpers.arrayElement(categoryIds),
 		companyId: faker.helpers.arrayElement(companyIds),
+		classificationId: faker.helpers.arrayElement(classificationIds),
+		statusId: faker.helpers.arrayElement(statusIds),
 	},
 	{
 		id: 3,
@@ -74,6 +82,8 @@ export const vehicle = [
 		brandId: faker.helpers.arrayElement(brandIds),
 		categoryId: faker.helpers.arrayElement(categoryIds),
 		companyId: faker.helpers.arrayElement(companyIds),
+		classificationId: faker.helpers.arrayElement(classificationIds),
+		statusId: faker.helpers.arrayElement(statusIds),
 	},
 	{
 		id: 4,
@@ -94,5 +104,7 @@ export const vehicle = [
 		brandId: faker.helpers.arrayElement(brandIds),
 		categoryId: faker.helpers.arrayElement(categoryIds),
 		companyId: faker.helpers.arrayElement(companyIds),
+		classificationId: faker.helpers.arrayElement(classificationIds),
+		statusId: faker.helpers.arrayElement(statusIds),
 	},
 ] as (CreateVehicleDTO & { id: number })[];
