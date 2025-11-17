@@ -22,7 +22,7 @@ datasource db {
 model Vehicle {
   id Int @id @default(autoincrement())
 
-  identifier  Int       @unique
+  identifier  String    @unique
   model       String
   year        String
   capacity    Int

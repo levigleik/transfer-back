@@ -18,15 +18,7 @@ app.use(
 	}),
 );
 
-app.use(
-	"/doc",
-	swaggerUi.serve,
-	swaggerUi.setup(swaggerFile, {
-		swaggerOptions: {
-			persistAuthorization: true,
-		},
-	}),
-);
+app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.get("/swagger-output.json", (_, res) => {
 	res.json(swaggerFile);
 });
@@ -34,7 +26,6 @@ app.use(
 	"/doc-scalar",
 	apiReference({
 		url: "/swagger-output.json",
-		persistAuth: true,
 	}),
 );
 app.use(router);

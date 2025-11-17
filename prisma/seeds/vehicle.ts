@@ -21,7 +21,7 @@ const statusIds = status.map((s) => s.id);
 export const vehicle = [
 	{
 		id: 1,
-		identifier: faker.number.int({ min: 1, max: 400 }),
+		identifier: "51c",
 		model: faker.vehicle.model(),
 		year: String(faker.number.int({ min: 1992, max: 2025 })),
 		capacity: faker.number.int({ min: 28, max: 61 }),
@@ -43,7 +43,7 @@ export const vehicle = [
 	},
 	{
 		id: 2,
-		identifier: faker.number.int({ min: 1, max: 400 }),
+		identifier: "42",
 		model: faker.vehicle.model(),
 		year: String(faker.number.int({ min: 1992, max: 2025 })),
 		capacity: faker.number.int({ min: 28, max: 61 }),
@@ -65,7 +65,7 @@ export const vehicle = [
 	},
 	{
 		id: 3,
-		identifier: faker.number.int({ min: 1, max: 400 }),
+		identifier: "23h",
 		model: faker.vehicle.model(),
 		year: String(faker.number.int({ min: 1992, max: 2025 })),
 		capacity: faker.number.int({ min: 28, max: 61 }),
@@ -87,7 +87,7 @@ export const vehicle = [
 	},
 	{
 		id: 4,
-		identifier: faker.number.int({ min: 1, max: 400 }),
+		identifier: "316",
 		model: faker.vehicle.model(),
 		year: String(faker.number.int({ min: 1992, max: 2025 })),
 		capacity: faker.number.int({ min: 28, max: 61 }),
