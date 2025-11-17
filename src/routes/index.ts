@@ -1,6 +1,7 @@
 import brandRouter from "@/modules/brand/brand.routes";
 import categoryRouter from "@/modules/category/category.routes";
 import classificationRouter from "@/modules/classification/classification.routes";
+import companyRouter from "@/modules/company/company.routes";
 import documentationRouter from "@/modules/documentation/documentation.routes";
 import gasStationRouter from "@/modules/gas-station/gas-station.routes";
 import gasSupplyRouter from "@/modules/gas-supply/gas-supply.routes";
@@ -18,6 +19,7 @@ router.use(healthRouter);
 
 router.use(brandRouter);
 router.use(categoryRouter);
+router.use(companyRouter);
 router.use(classificationRouter);
 router.use(documentationRouter);
 router.use(gasRouter);
