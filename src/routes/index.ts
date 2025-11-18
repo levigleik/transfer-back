@@ -1,3 +1,4 @@
+import path from "node:path";
 import brandRouter from "@/modules/brand/brand.routes";
 import categoryRouter from "@/modules/category/category.routes";
 import classificationRouter from "@/modules/classification/classification.routes";
@@ -29,5 +30,7 @@ router.use(occurrenceRouter);
 router.use(seriousnessRouter);
 router.use(statusRouter);
 router.use(vehicleRouter);
+
+router.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
 export { router };

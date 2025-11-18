@@ -3,7 +3,6 @@ import { getQuery } from "@/lib/query";
 import type { NextFunction, Request, Response } from "express";
 import type { CreateVehicleDTO, UpdateVehicleDTO } from "./vehicle.schemas";
 import { vehicleService } from "./vehicle.service";
-import { connect } from "http2";
 
 const getOneVehicle = async (
 	req: Request,
@@ -183,10 +182,69 @@ const deleteVehicle = async (
 	res.status(204).send();
 };
 
+const uploadVehiclePhotos = async (
+	req: Request,
+	res: Response,
+	next: NextFunction,
+) => {
+	/*
+    #swagger.tags = ['Vehicle']
+    #swagger.security = [{ "bearerAuth": [] }]
+    #swagger.consumes = ['multipart/form-data']
+    #swagger.requestBody = {
+      required: true,
+      content: {
+        "multipart/form-data": {
+          schema: {
+            type: "object",
+            properties: {
+              photos: {
+                type: "array",
+                items: {
+                  type: "string",
+                  format: "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  */
+
+	try {
+		const id = Number(req.params.id);
+		if (!id) throw new HttpError("Invalid id", 400);
+
+		const files = (req.files ?? []) as Express.Multer.File[];
+
+		// paths públicos que serão salvos em Vehicle.photos
+		const photoPaths = files.map(
+			(file) => `/uploads/vehicles/${file.filename}`,
+		);
+
+		const vehicle = await vehicleService.update({
+			where: { id },
+			data: {
+				photos: photoPaths, // aqui você decide: substituir ou append
+			},
+		});
+
+		if (!vehicle) {
+			throw new HttpError("Vehicle not found", 404);
+		}
+
+		res.status(200).json(vehicle);
+	} catch (err) {
+		next(err);
+	}
+};
+
 export const vehicleController = {
 	getVehicles,
 	getOneVehicle,
 	createVehicle,
 	updateVehicle,
 	deleteVehicle,
+	uploadVehiclePhotos,
 };
