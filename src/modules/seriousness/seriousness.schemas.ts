@@ -5,13 +5,13 @@ export const PublicSeriousnessSchema = SeriousnessSchema;
 
 export { SeriousnessSchema };
 
-export const createSeriousnessSchema = SeriousnessSchema.pick({
+export const seriousnessSchema = SeriousnessSchema.pick({
 	level: true,
 });
 
-export const updateSeriousnessSchema = SeriousnessSchema.pick({
-	level: true,
-}).partial();
+export const createSeriousnessSchema = seriousnessSchema;
+
+export const updateSeriousnessSchema = seriousnessSchema.partial();
 
 export type CreateSeriousnessDTO = z.infer<typeof createSeriousnessSchema>;
 export type UpdateSeriousnessDTO = z.infer<typeof updateSeriousnessSchema>;

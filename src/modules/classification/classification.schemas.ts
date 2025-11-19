@@ -5,13 +5,13 @@ export const PublicClassificationSchema = ClassificationSchema;
 
 export { ClassificationSchema };
 
-export const createClassificationSchema = ClassificationSchema.pick({
+const classificationSchema = ClassificationSchema.pick({
 	description: true,
 });
 
-export const updateClassificationSchema = ClassificationSchema.pick({
-	description: true,
-}).partial();
+export const createClassificationSchema = classificationSchema;
+
+export const updateClassificationSchema = ClassificationSchema.partial();
 
 export type CreateClassificationDTO = z.infer<
 	typeof createClassificationSchema

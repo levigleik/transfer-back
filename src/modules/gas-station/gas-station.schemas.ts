@@ -5,13 +5,13 @@ export const PublicGasStationSchema = GasStationSchema;
 
 export { GasStationSchema };
 
-export const createGasStationSchema = GasStationSchema.pick({
+export const gasStationSchema = GasStationSchema.pick({
 	name: true,
 });
 
-export const updateGasStationSchema = GasStationSchema.pick({
-	name: true,
-}).partial();
+export const createGasStationSchema = gasStationSchema;
+
+export const updateGasStationSchema = gasStationSchema.partial();
 
 export type CreateGasStationDTO = z.infer<typeof createGasStationSchema>;
 export type UpdateGasStationDTO = z.infer<typeof updateGasStationSchema>;

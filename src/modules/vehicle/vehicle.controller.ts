@@ -223,10 +223,16 @@ const uploadVehiclePhotos = async (
 			(file) => `/uploads/vehicles/${file.filename}`,
 		);
 
+		const tempVehicle = await vehicleService.findOne({
+			where: { id },
+		});
+
+		const vehiclePhotos = tempVehicle?.photos;
+
 		const vehicle = await vehicleService.update({
 			where: { id },
 			data: {
-				photos: photoPaths, // aqui você decide: substituir ou append
+				photos: vehiclePhotos ? [...vehiclePhotos, ...photoPaths] : photoPaths,
 			},
 		});
 

@@ -36,18 +36,22 @@ model Vehicle {
   description String?
   photos      String[]
 
-  gas              Gas            @relation(fields: [gasId], references: [id])
+  gas              Gas             @relation(fields: [gasId], references: [id])
   gasId            Int
-  brand            Brand          @relation(fields: [brandId], references: [id])
+  brand            Brand           @relation(fields: [brandId], references: [id])
   brandId          Int
-  classification   Classification @relation(fields: [classificationId], references: [id])
+  classification   Classification  @relation(fields: [classificationId], references: [id])
   classificationId Int
-  category         Category       @relation(fields: [categoryId], references: [id])
+  category         Category        @relation(fields: [categoryId], references: [id])
   categoryId       Int
-  company          Company        @relation(fields: [companyId], references: [id])
+  company          Company         @relation(fields: [companyId], references: [id])
   companyId        Int
-  status           Status         @relation(fields: [statusId], references: [id])
-  statusId         Int
+  documentations   Documentation[]
+  occurrences      Occurrence[]
+  gasSupplies      GasSupply[]
+
+  status   Status @relation(fields: [statusId], references: [id])
+  statusId Int
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -104,6 +108,10 @@ model Documentation {
   expiryAt          DateTime
   anticipateRenewal Boolean  @default(false)
   days              String[]
+  document          String
+
+  vehicle   Vehicle @relation(fields: [vehicleId], references: [id])
+  vehicleId Int
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -114,11 +122,14 @@ model Occurrence {
 
   date        DateTime
   description String
+  attachment  String
 
   seriousness      Seriousness    @relation(fields: [seriousnessId], references: [id])
   seriousnessId    Int
   classification   Classification @relation(fields: [classificationId], references: [id])
   classificationId Int
+  vehicle          Vehicle        @relation(fields: [vehicleId], references: [id])
+  vehicleId        Int
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -154,9 +165,12 @@ model GasSupply {
   quantity   Float
   supplyAt   DateTime
   totalPrice Float
+  receipt    String
 
-  gas   Gas @relation(fields: [gasId], references: [id])
-  gasId Int
+  gas       Gas     @relation(fields: [gasId], references: [id])
+  gasId     Int
+  vehicle   Vehicle @relation(fields: [vehicleId], references: [id])
+  vehicleId Int
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

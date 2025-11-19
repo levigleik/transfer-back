@@ -5,13 +5,12 @@ export const PublicCategorySchema = CategorySchema;
 
 export { CategorySchema };
 
-export const createCategorySchema = CategorySchema.pick({
+const categorySchema = CategorySchema.pick({
 	name: true,
 });
 
-export const updateCategorySchema = CategorySchema.pick({
-	name: true,
-}).partial();
+export const createCategorySchema = categorySchema;
+export const updateCategorySchema = categorySchema.partial();
 
 export type CreateCategoryDTO = z.infer<typeof createCategorySchema>;
 export type UpdateCategoryDTO = z.infer<typeof updateCategorySchema>;

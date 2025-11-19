@@ -87,6 +87,12 @@ const createGasSupply = async (
 			gas: {
 				connect: { id: gasSupply.gasId },
 			},
+			vehicle: {
+				connect: {
+					id: gasSupply.vehicleId,
+				},
+			},
+			receipt: gasSupply.receipt,
 		},
 	});
 	res.status(201).json(savedGasSupply);
@@ -123,6 +129,8 @@ const updateGasSupply = async (
 			supplyAt: data.supplyAt,
 			quantity: data.quantity,
 			totalPrice: data.totalPrice,
+			receipt: data.receipt,
+			gas: data.gasId ? { connect: { id: data.gasId } } : undefined,
 		},
 		where: { id },
 	});

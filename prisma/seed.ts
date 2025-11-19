@@ -45,15 +45,6 @@ async function main() {
 		});
 	}
 
-	console.log("-> Inserindo Documentações...");
-	for (const data of seeds.documentation) {
-		await prisma.documentation.upsert({
-			where: { id: data.id },
-			update: { ...data, id: undefined },
-			create: { ...data, id: undefined },
-		});
-	}
-
 	console.log("-> Inserindo Combustíveis...");
 	for (const data of seeds.gas) {
 		await prisma.gas.upsert({
@@ -94,6 +85,29 @@ async function main() {
 	// ETAPA 2: SEEDS COM DEPENDÊNCIAS
 	// ----------------------------------------------------
 
+	console.log("-> Inserindo Veículos...");
+	for (const data of seeds.vehicle) {
+		await prisma.vehicle.upsert({
+			where: {
+				id: data.id,
+				renavam: data.renavam,
+				chassi: data.chassi,
+				identifier: data.identifier,
+			},
+			update: { ...data, id: undefined },
+			create: { ...data, id: undefined },
+		});
+	}
+
+	console.log("-> Inserindo Documentações...");
+	for (const data of seeds.documentation) {
+		await prisma.documentation.upsert({
+			where: { id: data.id },
+			update: { ...data, id: undefined },
+			create: { ...data, id: undefined },
+		});
+	}
+
 	console.log("-> Inserindo Abastecimentos...");
 	for (const data of seeds.gasSupply) {
 		await prisma.gasSupply.upsert({
@@ -107,19 +121,6 @@ async function main() {
 	for (const data of seeds.occurrence) {
 		await prisma.occurrence.upsert({
 			where: { id: data.id },
-			update: { ...data, id: undefined },
-			create: { ...data, id: undefined },
-		});
-	}
-	console.log("-> Inserindo Veículos...");
-	for (const data of seeds.vehicle) {
-		await prisma.vehicle.upsert({
-			where: {
-				id: data.id,
-				renavam: data.renavam,
-				chassi: data.chassi,
-				identifier: data.identifier,
-			},
 			update: { ...data, id: undefined },
 			create: { ...data, id: undefined },
 		});

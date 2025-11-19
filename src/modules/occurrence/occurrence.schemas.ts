@@ -5,17 +5,18 @@ export const PublicOccurrenceSchema = OccurrenceSchema;
 
 export { OccurrenceSchema };
 
-export const createOccurrenceSchema = OccurrenceSchema.pick({
+export const occurrenceSchema = OccurrenceSchema.pick({
 	description: true,
 	date: true,
 	seriousnessId: true,
 	classificationId: true,
+	vehicleId: true,
+	attachment: true,
 });
 
-export const updateOccurrenceSchema = OccurrenceSchema.pick({
-	description: true,
-	date: true,
-}).partial();
+export const createOccurrenceSchema = occurrenceSchema;
+
+export const updateOccurrenceSchema = occurrenceSchema.partial();
 
 export type CreateOccurrenceDTO = z.infer<typeof createOccurrenceSchema>;
 export type UpdateOccurrenceDTO = z.infer<typeof updateOccurrenceSchema>;

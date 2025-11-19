@@ -1,5 +1,6 @@
 import type { CreateDocumentationDTO } from "@/modules/documentation/documentation.schemas";
 import { faker } from "@faker-js/faker/locale/pt_BR";
+import { vehicle } from "./vehicle";
 
 const documentationTypes = [
 	"Tacógrafo",
@@ -10,6 +11,8 @@ const documentationTypes = [
 
 const weekDays = ["dom", "seg", "ter", "qua", "qui", "sex", "sáb"];
 
+const vehicleIds = vehicle.map((v) => v.id);
+
 export const documentation = [
 	{
 		id: 1,
@@ -17,6 +20,8 @@ export const documentation = [
 		expiryAt: faker.date.future(),
 		anticipateRenewal: true,
 		days: faker.helpers.arrayElements(weekDays, { min: 1, max: 4 }),
+		document: "",
+		vehicleId: faker.helpers.arrayElement(vehicleIds),
 	},
 	{
 		id: 2,
@@ -24,6 +29,8 @@ export const documentation = [
 		expiryAt: faker.date.future(),
 		anticipateRenewal: false,
 		days: faker.helpers.arrayElements(weekDays, { min: 3, max: 6 }),
+		document: "",
+		vehicleId: faker.helpers.arrayElement(vehicleIds),
 	},
 	{
 		id: 3,
@@ -31,6 +38,8 @@ export const documentation = [
 		expiryAt: faker.date.future(),
 		anticipateRenewal: false,
 		days: faker.helpers.arrayElements(weekDays, 2),
+		document: "",
+		vehicleId: faker.helpers.arrayElement(vehicleIds),
 	},
 	{
 		id: 4,
@@ -38,5 +47,7 @@ export const documentation = [
 		expiryAt: faker.date.future(),
 		anticipateRenewal: true,
 		days: faker.helpers.arrayElements(weekDays, 1),
+		document: "",
+		vehicleId: faker.helpers.arrayElement(vehicleIds),
 	},
 ] as (CreateDocumentationDTO & { id: number })[];

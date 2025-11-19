@@ -5,13 +5,13 @@ export const PublicStatusSchema = StatusSchema;
 
 export { StatusSchema };
 
-export const createStatusSchema = StatusSchema.pick({
+export const statusSchema = StatusSchema.pick({
 	name: true,
 });
 
-export const updateStatusSchema = StatusSchema.pick({
-	name: true,
-}).partial();
+export const createStatusSchema = statusSchema;
+
+export const updateStatusSchema = statusSchema.partial();
 
 export type CreateStatusDTO = z.infer<typeof createStatusSchema>;
 export type UpdateStatusDTO = z.infer<typeof updateStatusSchema>;

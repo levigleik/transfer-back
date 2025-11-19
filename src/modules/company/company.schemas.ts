@@ -5,15 +5,14 @@ export const PublicCompanySchema = CompanySchema;
 
 export { CompanySchema };
 
-export const createCompanySchema = CompanySchema.pick({
+const companySchema = CompanySchema.pick({
 	name: true,
 	cnpj: true,
 });
 
-export const updateCompanySchema = CompanySchema.pick({
-	name: true,
-	cnpj: true,
-}).partial();
+export const createCompanySchema = companySchema;
+
+export const updateCompanySchema = companySchema.partial();
 
 export type CreateCompanyDTO = z.infer<typeof createCompanySchema>;
 export type UpdateCompanyDTO = z.infer<typeof updateCompanySchema>;

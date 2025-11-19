@@ -83,6 +83,8 @@ const createOccurrence = async (
 			description: occurrence.description,
 			seriousness: { connect: { id: occurrence.seriousnessId } },
 			classification: { connect: { id: occurrence.classificationId } },
+			vehicle: { connect: { id: occurrence.vehicleId } },
+			attachment: occurrence.attachment,
 		},
 	});
 	res.status(201).json(savedOccurrence);
@@ -116,6 +118,13 @@ const updateOccurrence = async (
 		data: {
 			date: data.date,
 			description: data.description,
+			seriousness: data.seriousnessId
+				? { connect: { id: data.seriousnessId } }
+				: undefined,
+			classification: data.classificationId
+				? { connect: { id: data.classificationId } }
+				: undefined,
+			attachment: data.attachment,
 		},
 		where: { id },
 	});

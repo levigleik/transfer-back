@@ -5,13 +5,13 @@ export const PublicGasSchema = GasSchema;
 
 export { GasSchema };
 
-export const createGasSchema = GasSchema.pick({
+export const gasSchema = GasSchema.pick({
 	type: true,
 });
 
-export const updateGasSchema = GasSchema.pick({
-	type: true,
-}).partial();
+export const createGasSchema = gasSchema;
+
+export const updateGasSchema = gasSchema.partial();
 
 export type CreateGasDTO = z.infer<typeof createGasSchema>;
 export type UpdateGasDTO = z.infer<typeof updateGasSchema>;

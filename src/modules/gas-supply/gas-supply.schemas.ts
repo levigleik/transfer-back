@@ -12,6 +12,8 @@ const gasSupplySchema = GasSupplySchema.pick({
 	supplyAt: true,
 	totalPrice: true,
 	gasId: true,
+	vehicleId: true,
+	receipt: true,
 });
 
 export const createGasSupplySchema = gasSupplySchema;

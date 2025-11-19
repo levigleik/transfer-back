@@ -78,7 +78,14 @@ const createDocumentation = async (
 	*/
 	const documentation = req.body as CreateDocumentationDTO;
 	const savedDocumentation = await documentationService.create({
-		data: documentation,
+		data: {
+			document: documentation.document,
+			days: documentation.days,
+			expiryAt: documentation.expiryAt,
+			type: documentation.type,
+			anticipateRenewal: documentation.anticipateRenewal,
+			vehicle: { connect: { id: documentation.vehicleId } },
+		},
 	});
 	res.status(201).json(savedDocumentation);
 };
@@ -113,6 +120,7 @@ const updateDocumentation = async (
 			expiryAt: data.expiryAt,
 			days: data.days,
 			anticipateRenewal: data.anticipateRenewal,
+			document: data.document,
 		},
 		where: { id },
 	});
