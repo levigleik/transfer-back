@@ -17,7 +17,11 @@ export const createDocumentationSchema = documentationSchema.extend({
 	expiryAt: z.coerce.date(),
 });
 
-export const updateDocumentationSchema = documentationSchema.partial();
+export const updateDocumentationSchema = documentationSchema
+	.extend({
+		expiryAt: z.coerce.date(),
+	})
+	.partial();
 
 export type CreateDocumentationDTO = z.infer<typeof createDocumentationSchema>;
 export type UpdateDocumentationDTO = z.infer<typeof updateDocumentationSchema>;

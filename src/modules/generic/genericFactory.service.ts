@@ -65,7 +65,7 @@ export function createCachedService<
 
 		if (item) {
 			await redis.set(cacheKey, JSON.stringify(item));
-			await redis.expire(cacheKey, 3600);
+			await redis.expire(cacheKey, 60);
 		}
 
 		return item;
@@ -88,7 +88,7 @@ export function createCachedService<
 		const items = await prismaDelegate.findMany(args);
 
 		await redis.set(cacheKey, JSON.stringify(items));
-		await redis.expire(cacheKey, 600);
+		await redis.expire(cacheKey, 60);
 
 		return items;
 	};

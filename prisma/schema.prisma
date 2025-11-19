@@ -110,7 +110,7 @@ model Documentation {
   days              String[]
   document          String
 
-  vehicle   Vehicle @relation(fields: [vehicleId], references: [id])
+  vehicle   Vehicle @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
   vehicleId Int
 
   createdAt DateTime @default(now())
@@ -128,7 +128,7 @@ model Occurrence {
   seriousnessId    Int
   classification   Classification @relation(fields: [classificationId], references: [id])
   classificationId Int
-  vehicle          Vehicle        @relation(fields: [vehicleId], references: [id])
+  vehicle          Vehicle        @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
   vehicleId        Int
 
   createdAt DateTime @default(now())
@@ -169,7 +169,7 @@ model GasSupply {
 
   gas       Gas     @relation(fields: [gasId], references: [id])
   gasId     Int
-  vehicle   Vehicle @relation(fields: [vehicleId], references: [id])
+  vehicle   Vehicle @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
   vehicleId Int
 
   createdAt DateTime @default(now())
