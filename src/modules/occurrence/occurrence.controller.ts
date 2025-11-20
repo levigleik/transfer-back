@@ -14,9 +14,6 @@ const getOneOccurrence = async (
 ) => {
 	/*
 		#swagger.tags = ['Occurrence']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Occurrence found",
 			schema: { $ref: '#/components/schemas/PublicOccurrence' }
@@ -44,9 +41,6 @@ const getOccurrences = async (
 ) => {
 	/*
 		#swagger.tags = ['Occurrence']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Occurrences found",
 			schema: [{ $ref: '#/components/schemas/PublicOccurrence' }]
@@ -64,9 +58,6 @@ const createOccurrence = async (
 ) => {
 	/*
 		#swagger.tags = ['Occurrence']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.requestBody = {
 			required: true,
 			schema: { $ref: '#/components/schemas/createOccurrence' }
@@ -97,9 +88,6 @@ const updateOccurrence = async (
 ) => {
 	/*
 		#swagger.tags = ['Occurrence']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.requestBody = {
 			required: true,
 			schema: { $ref: '#/components/schemas/updateOccurrence' }
@@ -141,9 +129,6 @@ const deleteOccurrence = async (
 ) => {
 	/*
 		#swagger.tags = ['Occurrence']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Occurrence deleted",
 			schema: { $ref: '#/components/schemas/PublicOccurrence' }

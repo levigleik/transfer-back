@@ -7,9 +7,6 @@ import { gasService } from "./gas.service";
 const getOneGas = async (req: Request, res: Response, next: NextFunction) => {
 	/*
 		#swagger.tags = ['Gas']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Gas found",
 			schema: { $ref: '#/components/schemas/PublicGas' }
@@ -33,9 +30,6 @@ const getOneGas = async (req: Request, res: Response, next: NextFunction) => {
 const getGass = async (req: Request, res: Response, next: NextFunction) => {
 	/*
 		#swagger.tags = ['Gas']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Gass found",
 			schema: [{ $ref: '#/components/schemas/PublicGas' }]
@@ -49,9 +43,6 @@ const getGass = async (req: Request, res: Response, next: NextFunction) => {
 const createGas = async (req: Request, res: Response, next: NextFunction) => {
 	/*
 		#swagger.tags = ['Gas']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.requestBody = {
 			required: true,
 			schema: { $ref: '#/components/schemas/createGas' }
@@ -71,9 +62,6 @@ const createGas = async (req: Request, res: Response, next: NextFunction) => {
 const updateGas = async (req: Request, res: Response, next: NextFunction) => {
 	/*
 		#swagger.tags = ['Gas']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.requestBody = {
 			required: true,
 			schema: { $ref: '#/components/schemas/updateGas' }
@@ -103,9 +91,6 @@ const updateGas = async (req: Request, res: Response, next: NextFunction) => {
 const deleteGas = async (req: Request, res: Response, next: NextFunction) => {
 	/*
 		#swagger.tags = ['Gas']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Gas deleted",
 			schema: { $ref: '#/components/schemas/PublicGas' }

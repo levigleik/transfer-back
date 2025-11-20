@@ -11,9 +11,6 @@ const getOneVehicle = async (
 ) => {
 	/*
 		#swagger.tags = ['Vehicle']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Vehicle found",
 			schema: { $ref: '#/components/schemas/PublicVehicle' }
@@ -37,9 +34,6 @@ const getOneVehicle = async (
 const getVehicles = async (req: Request, res: Response, next: NextFunction) => {
 	/*
 		#swagger.tags = ['Vehicle']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Vehicles found",
 			schema: [{ $ref: '#/components/schemas/PublicVehicle' }]
@@ -57,9 +51,6 @@ const createVehicle = async (
 ) => {
 	/*
 		#swagger.tags = ['Vehicle']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.requestBody = {
 			required: true,
 			schema: { $ref: '#/components/schemas/createVehicle' }
@@ -84,7 +75,7 @@ const createVehicle = async (
 			chassi: vehicle.chassi,
 			review: vehicle.review,
 			description: vehicle.description,
-			photos: vehicle.photos,
+			// photos: vehicle.photos,
 			gas: {
 				connect: { id: vehicle.gasId },
 			},
@@ -115,9 +106,6 @@ const updateVehicle = async (
 ) => {
 	/*
 		#swagger.tags = ['Vehicle']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.requestBody = {
 			required: true,
 			schema: { $ref: '#/components/schemas/updateVehicle' }
@@ -163,9 +151,6 @@ const deleteVehicle = async (
 ) => {
 	/*
 		#swagger.tags = ['Vehicle']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Vehicle deleted",
 			schema: { $ref: '#/components/schemas/PublicVehicle' }

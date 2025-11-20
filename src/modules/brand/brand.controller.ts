@@ -7,9 +7,6 @@ import { brandService } from "./brand.service";
 const getOneBrand = async (req: Request, res: Response, next: NextFunction) => {
 	/*
 		#swagger.tags = ['Brand']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Brand found",
 			schema: { $ref: '#/components/schemas/PublicBrand' }
@@ -33,9 +30,6 @@ const getOneBrand = async (req: Request, res: Response, next: NextFunction) => {
 const getBrands = async (req: Request, res: Response, next: NextFunction) => {
 	/*
 		#swagger.tags = ['Brand']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Brands found",
 			schema: [{ $ref: '#/components/schemas/PublicBrand' }]
@@ -49,9 +43,6 @@ const getBrands = async (req: Request, res: Response, next: NextFunction) => {
 const createBrand = async (req: Request, res: Response, next: NextFunction) => {
 	/*
 		#swagger.tags = ['Brand']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.requestBody = {
 			required: true,
 			schema: { $ref: '#/components/schemas/createBrand' }
@@ -71,9 +62,6 @@ const createBrand = async (req: Request, res: Response, next: NextFunction) => {
 const updateBrand = async (req: Request, res: Response, next: NextFunction) => {
 	/*
 		#swagger.tags = ['Brand']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.requestBody = {
 			required: true,
 			schema: { $ref: '#/components/schemas/updateBrand' }
@@ -103,9 +91,6 @@ const updateBrand = async (req: Request, res: Response, next: NextFunction) => {
 const deleteBrand = async (req: Request, res: Response, next: NextFunction) => {
 	/*
 		#swagger.tags = ['Brand']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Brand deleted",
 			schema: { $ref: '#/components/schemas/PublicBrand' }

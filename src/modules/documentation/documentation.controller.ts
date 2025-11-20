@@ -1,5 +1,9 @@
+import * as fs from "node:fs";
+import path from "node:path";
 import { HttpError } from "@/lib/error/http-error";
+import { prisma } from "@/lib/prisma";
 import { getQuery } from "@/lib/query";
+import type { Documentation, File } from "@prisma/client";
 import type { NextFunction, Request, Response } from "express";
 import type {
 	CreateDocumentationDTO,
@@ -14,9 +18,6 @@ const getOneDocumentation = async (
 ) => {
 	/*
 		#swagger.tags = ['Documentation']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Documentation found",
 			schema: { $ref: '#/components/schemas/PublicDocumentation' }
@@ -44,9 +45,6 @@ const getDocumentations = async (
 ) => {
 	/*
 		#swagger.tags = ['Documentation']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Documentations found",
 			schema: [{ $ref: '#/components/schemas/PublicDocumentation' }]
@@ -64,9 +62,6 @@ const createDocumentation = async (
 ) => {
 	/*
 		#swagger.tags = ['Documentation']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.requestBody = {
 			required: true,
 			schema: { $ref: '#/components/schemas/createDocumentation' }
@@ -79,7 +74,6 @@ const createDocumentation = async (
 	const documentation = req.body as CreateDocumentationDTO;
 	const savedDocumentation = await documentationService.create({
 		data: {
-			document: documentation.document,
 			days: documentation.days,
 			expiryAt: documentation.expiryAt,
 			type: documentation.type,
@@ -97,9 +91,6 @@ const updateDocumentation = async (
 ) => {
 	/*
 		#swagger.tags = ['Documentation']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.requestBody = {
 			required: true,
 			schema: { $ref: '#/components/schemas/updateDocumentation' }
@@ -120,7 +111,6 @@ const updateDocumentation = async (
 			expiryAt: data.expiryAt,
 			days: data.days,
 			anticipateRenewal: data.anticipateRenewal,
-			document: data.document,
 		},
 		where: { id },
 	});
@@ -137,9 +127,6 @@ const deleteDocumentation = async (
 ) => {
 	/*
 		#swagger.tags = ['Documentation']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Documentation deleted",
 			schema: { $ref: '#/components/schemas/PublicDocumentation' }
@@ -158,10 +145,97 @@ const deleteDocumentation = async (
 	res.status(204).send(documentationDeleted);
 };
 
+const uploadDocumentationFile = async (
+	req: Request,
+	res: Response,
+	next: NextFunction,
+) => {
+	/*
+		#swagger.tags = ['Documentation']
+		#swagger.security = [{ "bearerAuth": [] }]
+		#swagger.consumes = ['multipart/form-data']
+		#swagger.requestBody = {
+			required: true,
+			content: {
+				"multipart/form-data": {
+					schema: {
+						type: "object",
+						properties: {
+							doc: {
+								type: "string",
+								format: "binary"
+							}
+						}
+					}
+				}
+			}
+		}
+	*/
+
+	try {
+		const id = Number(req.params.id);
+		if (!id) throw new HttpError("Invalid id", 400);
+
+		const files = (req.files ?? []) as Express.Multer.File[];
+
+		if (!files) throw new HttpError("No file uploaded", 400);
+
+		const tempDocumentation = (await documentationService.findOne({
+			where: { id },
+			include: { file: true },
+		})) as Documentation & { file: File };
+
+		if (!tempDocumentation) {
+			throw new HttpError("Documentation not found", 404);
+		}
+
+		if (tempDocumentation.fileId !== null && tempDocumentation.file) {
+			try {
+				const existingFile = tempDocumentation.file;
+				const fsPath = path.join(process.cwd(), existingFile.path);
+				fs.unlink(fsPath, () => {});
+
+				await prisma.file.delete({ where: { id: existingFile.id } });
+			} catch (err) {
+				console.error("Erro ao remover arquivo antigo:", err);
+			}
+		}
+		const fileCreated = await documentationService.createFileRecordFromMulter(
+			files[0],
+		);
+
+		await documentationService.update({
+			where: { id },
+			data: {
+				file: {
+					connect: {
+						id: fileCreated.id,
+					},
+				},
+			},
+		});
+
+		const documentation = await documentationService.findOne({
+			where: { id },
+			include: { file: true },
+		});
+
+		if (!documentation) {
+			throw new HttpError("Documentation not found after update", 404);
+		}
+
+		res.status(200).json(documentation);
+	} catch (err) {
+		console.error("------------", err);
+		next(err);
+	}
+};
+
 export const documentationController = {
 	getDocumentations,
 	getOneDocumentation,
 	createDocumentation,
 	updateDocumentation,
 	deleteDocumentation,
+	uploadDocumentationFile,
 };

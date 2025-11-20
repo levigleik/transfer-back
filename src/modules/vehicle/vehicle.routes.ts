@@ -1,8 +1,8 @@
+import { uploadVehiclePhotos } from "@/lib/upload-vehicle-images";
 import { validateBody } from "@/middleware/validation.middleware";
 import express from "express";
 import { vehicleController } from "./vehicle.controller";
 import { createVehicleSchema, updateVehicleSchema } from "./vehicle.schemas";
-import { uploadVehiclePhotos } from "@/lib/upload-vehicle-images";
 
 const vehicleRouter = express.Router();
 

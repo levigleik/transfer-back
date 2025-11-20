@@ -108,8 +108,9 @@ model Documentation {
   expiryAt          DateTime
   anticipateRenewal Boolean  @default(false)
   days              String[]
-  document          String
 
+  file      File?   @relation(fields: [fileId], references: [id], onDelete: Cascade)
+  fileId    Int?
   vehicle   Vehicle @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
   vehicleId Int
 
@@ -194,6 +195,18 @@ model Status {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model File {
+  id       Int    @id @default(autoincrement())
+  fileName String
+  path     String
+  mimeType String
+  size     Int
+
+  documentations Documentation[]
+
+  createdAt DateTime @default(now())
 }
 
 enum PlateType {

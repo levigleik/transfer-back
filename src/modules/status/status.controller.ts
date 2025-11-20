@@ -11,9 +11,6 @@ const getOneStatus = async (
 ) => {
 	/*
 		#swagger.tags = ['Status']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Status found",
 			schema: { $ref: '#/components/schemas/PublicStatus' }
@@ -37,9 +34,6 @@ const getOneStatus = async (
 const getStatuss = async (req: Request, res: Response, next: NextFunction) => {
 	/*
 		#swagger.tags = ['Status']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Statuss found",
 			schema: [{ $ref: '#/components/schemas/PublicStatus' }]
@@ -57,9 +51,6 @@ const createStatus = async (
 ) => {
 	/*
 		#swagger.tags = ['Status']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.requestBody = {
 			required: true,
 			schema: { $ref: '#/components/schemas/createStatus' }
@@ -83,9 +74,6 @@ const updateStatus = async (
 ) => {
 	/*
 		#swagger.tags = ['Status']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.requestBody = {
 			required: true,
 			schema: { $ref: '#/components/schemas/updateStatus' }
@@ -119,9 +107,6 @@ const deleteStatus = async (
 ) => {
 	/*
 		#swagger.tags = ['Status']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Status deleted",
 			schema: { $ref: '#/components/schemas/PublicStatus' }

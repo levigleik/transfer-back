@@ -14,9 +14,6 @@ const getOneGasStation = async (
 ) => {
 	/*
 		#swagger.tags = ['GasStation']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "GasStation found",
 			schema: { $ref: '#/components/schemas/PublicGasStation' }
@@ -44,9 +41,6 @@ const getGasStations = async (
 ) => {
 	/*
 		#swagger.tags = ['GasStation']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "GasStations found",
 			schema: [{ $ref: '#/components/schemas/PublicGasStation' }]
@@ -64,9 +58,6 @@ const createGasStation = async (
 ) => {
 	/*
 		#swagger.tags = ['GasStation']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.requestBody = {
 			required: true,
 			schema: { $ref: '#/components/schemas/createGasStation' }
@@ -88,9 +79,6 @@ const updateGasStation = async (
 ) => {
 	/*
 		#swagger.tags = ['GasStation']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.requestBody = {
 			required: true,
 			schema: { $ref: '#/components/schemas/updateGasStation' }
@@ -124,9 +112,6 @@ const deleteGasStation = async (
 ) => {
 	/*
 		#swagger.tags = ['GasStation']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "GasStation deleted",
 			schema: { $ref: '#/components/schemas/PublicGasStation' }

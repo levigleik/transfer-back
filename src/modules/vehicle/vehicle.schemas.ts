@@ -1,5 +1,5 @@
 import { VehicleSchema } from "@/types/prisma/schemas";
-import type { z } from "zod";
+import { z } from "zod";
 
 export const PublicVehicleSchema = VehicleSchema;
 
@@ -18,13 +18,15 @@ export const createVehicleSchema = VehicleSchema.pick({
 	chassi: true,
 	review: true,
 	description: true,
-	photos: true,
+	// photos: true,
 	gasId: true,
 	companyId: true,
 	categoryId: true,
 	brandId: true,
 	classificationId: true,
 	statusId: true,
+}).extend({
+	photos: z.array(z.string()).optional(),
 });
 
 export const updateVehicleSchema = VehicleSchema.pick({

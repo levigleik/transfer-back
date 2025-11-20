@@ -11,9 +11,6 @@ const getOneCompany = async (
 ) => {
 	/*
 		#swagger.tags = ['Company']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Company found",
 			schema: { $ref: '#/components/schemas/PublicCompany' }
@@ -37,9 +34,6 @@ const getOneCompany = async (
 const getCompanys = async (req: Request, res: Response, next: NextFunction) => {
 	/*
 		#swagger.tags = ['Company']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Companys found",
 			schema: [{ $ref: '#/components/schemas/PublicCompany' }]
@@ -57,9 +51,6 @@ const createCompany = async (
 ) => {
 	/*
 		#swagger.tags = ['Company']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.requestBody = {
 			required: true,
 			schema: { $ref: '#/components/schemas/createCompany' }
@@ -83,9 +74,6 @@ const updateCompany = async (
 ) => {
 	/*
 		#swagger.tags = ['Company']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.requestBody = {
 			required: true,
 			schema: { $ref: '#/components/schemas/updateCompany' }
@@ -120,9 +108,6 @@ const deleteCompany = async (
 ) => {
 	/*
 		#swagger.tags = ['Company']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Company deleted",
 			schema: { $ref: '#/components/schemas/PublicCompany' }

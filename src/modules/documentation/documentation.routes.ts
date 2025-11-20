@@ -5,6 +5,7 @@ import {
 	createDocumentationSchema,
 	updateDocumentationSchema,
 } from "./documentation.schemas";
+import { uploadFiles } from "@/lib/upload-files";
 
 const documentationRouter = express.Router();
 
@@ -24,5 +25,11 @@ documentationRouter
 		documentationController.updateDocumentation,
 	)
 	.delete(documentationController.deleteDocumentation);
+
+documentationRouter.post(
+	"/documentation/:id/docs",
+	uploadFiles.array("files", 1),
+	documentationController.uploadDocumentationFile,
+);
 
 export default documentationRouter;

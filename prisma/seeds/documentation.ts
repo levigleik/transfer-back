@@ -20,7 +20,6 @@ export const documentation = [
 		expiryAt: faker.date.future(),
 		anticipateRenewal: true,
 		days: faker.helpers.arrayElements(weekDays, { min: 1, max: 4 }),
-		document: "",
 		vehicleId: faker.helpers.arrayElement(vehicleIds),
 	},
 	{
@@ -29,7 +28,6 @@ export const documentation = [
 		expiryAt: faker.date.future(),
 		anticipateRenewal: false,
 		days: faker.helpers.arrayElements(weekDays, { min: 3, max: 6 }),
-		document: "",
 		vehicleId: faker.helpers.arrayElement(vehicleIds),
 	},
 	{
@@ -38,7 +36,6 @@ export const documentation = [
 		expiryAt: faker.date.future(),
 		anticipateRenewal: false,
 		days: faker.helpers.arrayElements(weekDays, 2),
-		document: "",
 		vehicleId: faker.helpers.arrayElement(vehicleIds),
 	},
 	{
@@ -47,7 +44,6 @@ export const documentation = [
 		expiryAt: faker.date.future(),
 		anticipateRenewal: true,
 		days: faker.helpers.arrayElements(weekDays, 1),
-		document: "",
 		vehicleId: faker.helpers.arrayElement(vehicleIds),
 	},
 ] as (CreateDocumentationDTO & { id: number })[];

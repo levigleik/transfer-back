@@ -14,9 +14,6 @@ const getOneSeriousness = async (
 ) => {
 	/*
 		#swagger.tags = ['Seriousness']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Seriousness found",
 			schema: { $ref: '#/components/schemas/PublicSeriousness' }
@@ -44,9 +41,6 @@ const getSeriousnesss = async (
 ) => {
 	/*
 		#swagger.tags = ['Seriousness']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Seriousnesss found",
 			schema: [{ $ref: '#/components/schemas/PublicSeriousness' }]
@@ -64,9 +58,6 @@ const createSeriousness = async (
 ) => {
 	/*
 		#swagger.tags = ['Seriousness']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.requestBody = {
 			required: true,
 			schema: { $ref: '#/components/schemas/createSeriousness' }
@@ -90,9 +81,6 @@ const updateSeriousness = async (
 ) => {
 	/*
 		#swagger.tags = ['Seriousness']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.requestBody = {
 			required: true,
 			schema: { $ref: '#/components/schemas/updateSeriousness' }
@@ -126,9 +114,6 @@ const deleteSeriousness = async (
 ) => {
 	/*
 		#swagger.tags = ['Seriousness']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Seriousness deleted",
 			schema: { $ref: '#/components/schemas/PublicSeriousness' }

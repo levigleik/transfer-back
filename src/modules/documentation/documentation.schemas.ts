@@ -10,7 +10,6 @@ const documentationSchema = DocumentationSchema.pick({
 	expiryAt: true,
 	days: true,
 	anticipateRenewal: true,
-	document: true,
 	vehicleId: true,
 });
 export const createDocumentationSchema = documentationSchema.extend({

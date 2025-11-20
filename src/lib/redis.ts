@@ -79,4 +79,4 @@ export const checkRedisHealth = async (): Promise<boolean> => {
 	}
 };
 
-export const EXPIRE_REDIS_CACHE_SECONDS = 1;
+export const EXPIRE_REDIS_CACHE_SECONDS = 600;

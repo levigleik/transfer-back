@@ -11,9 +11,6 @@ const getOneCategory = async (
 ) => {
 	/*
 		#swagger.tags = ['Category']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Category found",
 			schema: { $ref: '#/components/schemas/PublicCategory' }
@@ -41,9 +38,6 @@ const getCategorys = async (
 ) => {
 	/*
 		#swagger.tags = ['Category']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Categorys found",
 			schema: [{ $ref: '#/components/schemas/PublicCategory' }]
@@ -61,9 +55,6 @@ const createCategory = async (
 ) => {
 	/*
 		#swagger.tags = ['Category']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.requestBody = {
 			required: true,
 			schema: { $ref: '#/components/schemas/createCategory' }
@@ -87,9 +78,6 @@ const updateCategory = async (
 ) => {
 	/*
 		#swagger.tags = ['Category']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.requestBody = {
 			required: true,
 			schema: { $ref: '#/components/schemas/updateCategory' }
@@ -123,9 +111,6 @@ const deleteCategory = async (
 ) => {
 	/*
 		#swagger.tags = ['Category']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Category deleted",
 			schema: { $ref: '#/components/schemas/PublicCategory' }

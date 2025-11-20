@@ -14,9 +14,6 @@ const getOneClassification = async (
 ) => {
 	/*
 		#swagger.tags = ['Classification']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Classification found",
 			schema: { $ref: '#/components/schemas/PublicClassification' }
@@ -44,9 +41,6 @@ const getClassifications = async (
 ) => {
 	/*
 		#swagger.tags = ['Classification']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Classifications found",
 			schema: [{ $ref: '#/components/schemas/PublicClassification' }]
@@ -64,9 +58,6 @@ const createClassification = async (
 ) => {
 	/*
 		#swagger.tags = ['Classification']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.requestBody = {
 			required: true,
 			schema: { $ref: '#/components/schemas/createClassification' }
@@ -90,9 +81,6 @@ const updateClassification = async (
 ) => {
 	/*
 		#swagger.tags = ['Classification']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.requestBody = {
 			required: true,
 			schema: { $ref: '#/components/schemas/updateClassification' }
@@ -126,9 +114,6 @@ const deleteClassification = async (
 ) => {
 	/*
 		#swagger.tags = ['Classification']
-		#swagger.security = [{
-      "bearerAuth": []
-    }]
 		#swagger.responses[200] = {
 			description: "Classification deleted",
 			schema: { $ref: '#/components/schemas/PublicClassification' }
