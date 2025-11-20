@@ -203,13 +203,11 @@ const uploadDocumentationFile = async (
 			}
 		}
 
-		console.log("files", files);
-
 		const fileCreated = await documentationService.createFileRecordFromMulter(
 			files[0],
 		);
 
-		await documentationService.update({
+		const documentation = await documentationService.update({
 			where: { id },
 			data: {
 				file: {
@@ -220,16 +218,11 @@ const uploadDocumentationFile = async (
 			},
 		});
 
-		const documentation = await documentationService.findOne({
-			where: { id },
-			include: { file: true },
-		});
-
 		if (!documentation) {
 			throw new HttpError("Documentation not found after update", 404);
 		}
 
-		res.status(200).json();
+		res.status(200).json(documentation);
 	} catch (err) {
 		console.error("------------", err);
 		next(err);

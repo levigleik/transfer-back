@@ -109,7 +109,7 @@ model Documentation {
   anticipateRenewal Boolean  @default(false)
   days              String[]
 
-  file      File?   @relation(fields: [fileId], references: [id], onDelete: Cascade)
+  file      File?   @relation(fields: [fileId], references: [id])
   fileId    Int?
   vehicle   Vehicle @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
   vehicleId Int
