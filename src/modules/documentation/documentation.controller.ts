@@ -10,6 +10,7 @@ import type {
 	UpdateDocumentationDTO,
 } from "./documentation.schemas";
 import { documentationService } from "./documentation.service";
+import { fileService } from "../file/file.service";
 
 const getOneDocumentation = async (
 	req: Request,
@@ -137,11 +138,18 @@ const deleteDocumentation = async (
 	*/
 	const id = Number(req.params.id);
 	if (!id) throw new HttpError("Invalid id", 404);
-	const documentation = await documentationService.findOne({ where: { id } });
+	const documentation = (await documentationService.findOne({
+		where: { id },
+		include: { file: true },
+	})) as Documentation & { file: File };
 	if (!documentation) throw new HttpError("Documentation not found", 404);
 	const documentationDeleted = await documentationService.deleteOne({
 		where: { id },
 	});
+	if (documentation.fileId) {
+		fileService.deleteFile(documentation.file);
+		await fileService.deleteOne({ where: { id: documentation.fileId } });
+	}
 	res.status(204).send(documentationDeleted);
 };
 
@@ -191,13 +199,11 @@ const uploadDocumentationFile = async (
 
 		if (tempDocumentation.fileId !== null && tempDocumentation.file) {
 			try {
-				const existingFile = tempDocumentation.file;
-				const fsPath = path.join(process.cwd(), existingFile.path);
-				fs.unlink(fsPath, (err) => {
-					console.error("--", err);
-				});
+				fileService.deleteFile(tempDocumentation.file);
 
-				await prisma.file.delete({ where: { id: existingFile.id } });
+				await fileService.deleteOne({
+					where: { id: tempDocumentation.file.id },
+				});
 			} catch (err) {
 				console.error("Erro ao remover arquivo antigo:", err);
 			}

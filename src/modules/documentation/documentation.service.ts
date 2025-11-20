@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { createCachedService } from "@/modules/generic/genericFactory.service";
-import type { Documentation } from "@prisma/client";
+import type { Documentation, File } from "@prisma/client";
 
 const documentationCrudService = createCachedService<
 	Documentation,
@@ -22,6 +22,7 @@ async function createFileRecordFromMulter(file?: Express.Multer.File) {
 
 	return created;
 }
+
 export const documentationService = {
 	...documentationCrudService,
 	createFileRecordFromMulter,
