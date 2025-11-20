@@ -162,8 +162,8 @@ const deleteGasSupply = async (
 	if (!id) throw new HttpError("Invalid id", 404);
 	const gasSupply = await gasSupplyService.findOne({ where: { id } });
 	if (!gasSupply) throw new HttpError("GasSupply not found", 404);
-	await gasSupplyService.deleteOne({ where: { id } });
-	res.status(204).send();
+	const gasSupplyDeleted = await gasSupplyService.deleteOne({ where: { id } });
+	res.status(204).send(gasSupplyDeleted);
 };
 
 export const gasSupplyController = {

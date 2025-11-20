@@ -139,8 +139,10 @@ const deleteGasStation = async (
 	if (!id) throw new HttpError("Invalid id", 404);
 	const gasStation = await gasStationService.findOne({ where: { id } });
 	if (!gasStation) throw new HttpError("GasStation not found", 404);
-	await gasStationService.deleteOne({ where: { id } });
-	res.status(204).send();
+	const gasStationDeleted = await gasStationService.deleteOne({
+		where: { id },
+	});
+	res.status(204).send(gasStationDeleted);
 };
 
 export const gasStationController = {

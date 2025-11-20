@@ -178,8 +178,8 @@ const deleteVehicle = async (
 	if (!id) throw new HttpError("Invalid id", 404);
 	const vehicle = await vehicleService.findOne({ where: { id } });
 	if (!vehicle) throw new HttpError("Vehicle not found", 404);
-	await vehicleService.deleteOne({ where: { id } });
-	res.status(204).send();
+	const vehicleDeleted = await vehicleService.deleteOne({ where: { id } });
+	res.status(204).send(vehicleDeleted);
 };
 
 const uploadVehiclePhotos = async (

@@ -134,8 +134,8 @@ const deleteStatus = async (
 	if (!id) throw new HttpError("Invalid id", 404);
 	const status = await statusService.findOne({ where: { id } });
 	if (!status) throw new HttpError("Status not found", 404);
-	await statusService.deleteOne({ where: { id } });
-	res.status(204).send();
+	const statusDeleted = await statusService.deleteOne({ where: { id } });
+	res.status(204).send(statusDeleted);
 };
 
 export const statusController = {

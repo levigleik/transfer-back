@@ -156,8 +156,10 @@ const deleteOccurrence = async (
 	if (!id) throw new HttpError("Invalid id", 404);
 	const occurrence = await occurrenceService.findOne({ where: { id } });
 	if (!occurrence) throw new HttpError("Occurrence not found", 404);
-	await occurrenceService.deleteOne({ where: { id } });
-	res.status(204).send();
+	const occurrenceDeleted = await occurrenceService.deleteOne({
+		where: { id },
+	});
+	res.status(204).send(occurrenceDeleted);
 };
 
 export const occurrenceController = {

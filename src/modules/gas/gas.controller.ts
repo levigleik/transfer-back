@@ -1,17 +1,10 @@
 import { HttpError } from "@/lib/error/http-error";
 import { getQuery } from "@/lib/query";
 import type { NextFunction, Request, Response } from "express";
-import type {
-	CreateGasDTO,
-	UpdateGasDTO,
-} from "./gas.schemas";
+import type { CreateGasDTO, UpdateGasDTO } from "./gas.schemas";
 import { gasService } from "./gas.service";
 
-const getOneGas = async (
-	req: Request,
-	res: Response,
-	next: NextFunction,
-) => {
+const getOneGas = async (req: Request, res: Response, next: NextFunction) => {
 	/*
 		#swagger.tags = ['Gas']
 		#swagger.security = [{
@@ -37,11 +30,7 @@ const getOneGas = async (
 	res.status(200).json(gas);
 };
 
-const getGass = async (
-	req: Request,
-	res: Response,
-	next: NextFunction,
-) => {
+const getGass = async (req: Request, res: Response, next: NextFunction) => {
 	/*
 		#swagger.tags = ['Gas']
 		#swagger.security = [{
@@ -57,11 +46,7 @@ const getGass = async (
 	res.status(200).json(gas);
 };
 
-const createGas = async (
-	req: Request,
-	res: Response,
-	next: NextFunction,
-) => {
+const createGas = async (req: Request, res: Response, next: NextFunction) => {
 	/*
 		#swagger.tags = ['Gas']
 		#swagger.security = [{
@@ -83,11 +68,7 @@ const createGas = async (
 	res.status(201).json(savedGas);
 };
 
-const updateGas = async (
-	req: Request,
-	res: Response,
-	next: NextFunction,
-) => {
+const updateGas = async (req: Request, res: Response, next: NextFunction) => {
 	/*
 		#swagger.tags = ['Gas']
 		#swagger.security = [{
@@ -119,11 +100,7 @@ const updateGas = async (
 	res.status(200).json(gas);
 };
 
-const deleteGas = async (
-	req: Request,
-	res: Response,
-	next: NextFunction,
-) => {
+const deleteGas = async (req: Request, res: Response, next: NextFunction) => {
 	/*
 		#swagger.tags = ['Gas']
 		#swagger.security = [{
@@ -141,8 +118,8 @@ const deleteGas = async (
 	if (!id) throw new HttpError("Invalid id", 404);
 	const gas = await gasService.findOne({ where: { id } });
 	if (!gas) throw new HttpError("Gas not found", 404);
-	await gasService.deleteOne({ where: { id } });
-	res.status(204).send();
+	const gasDeleted = await gasService.deleteOne({ where: { id } });
+	res.status(204).send(gasDeleted);
 };
 
 export const gasController = {

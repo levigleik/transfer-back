@@ -138,8 +138,7 @@ const deleteCategory = async (
 	if (!id) throw new HttpError("Invalid id", 404);
 	const category = await categoryService.findOne({ where: { id } });
 	if (!category) throw new HttpError("Category not found", 404);
-	await categoryService.deleteOne({ where: { id } });
-	res.status(204).send();
+	c;
 };
 
 export const categoryController = {

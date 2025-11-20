@@ -135,8 +135,8 @@ const deleteCompany = async (
 	if (!id) throw new HttpError("Invalid id", 404);
 	const company = await companyService.findOne({ where: { id } });
 	if (!company) throw new HttpError("Company not found", 404);
-	await companyService.deleteOne({ where: { id } });
-	res.status(204).send();
+	const companyDeleted = await companyService.deleteOne({ where: { id } });
+	res.status(204).send(companyDeleted);
 };
 
 export const companyController = {

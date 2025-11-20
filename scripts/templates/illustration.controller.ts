@@ -141,8 +141,10 @@ const deleteIllustration = async (
 	if (!id) throw new HttpError("Invalid id", 404);
 	const illustration = await illustrationService.findOne({ where: { id } });
 	if (!illustration) throw new HttpError("Illustration not found", 404);
-	await illustrationService.deleteOne({ where: { id } });
-	res.status(204).send();
+	const illustrationDeleted = await illustrationService.deleteOne({
+		where: { id },
+	});
+	res.status(204).send(illustrationDeleted);
 };
 
 export const illustrationController = {

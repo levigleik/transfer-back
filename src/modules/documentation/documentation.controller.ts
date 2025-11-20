@@ -152,8 +152,10 @@ const deleteDocumentation = async (
 	if (!id) throw new HttpError("Invalid id", 404);
 	const documentation = await documentationService.findOne({ where: { id } });
 	if (!documentation) throw new HttpError("Documentation not found", 404);
-	await documentationService.deleteOne({ where: { id } });
-	res.status(204).send();
+	const documentationDeleted = await documentationService.deleteOne({
+		where: { id },
+	});
+	res.status(204).send(documentationDeleted);
 };
 
 export const documentationController = {

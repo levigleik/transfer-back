@@ -141,8 +141,10 @@ const deleteSeriousness = async (
 	if (!id) throw new HttpError("Invalid id", 404);
 	const seriousness = await seriousnessService.findOne({ where: { id } });
 	if (!seriousness) throw new HttpError("Seriousness not found", 404);
-	await seriousnessService.deleteOne({ where: { id } });
-	res.status(204).send();
+	const seriousnessDeleted = await seriousnessService.deleteOne({
+		where: { id },
+	});
+	res.status(204).send(seriousnessDeleted);
 };
 
 export const seriousnessController = {

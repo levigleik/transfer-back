@@ -141,8 +141,10 @@ const deleteClassification = async (
 	if (!id) throw new HttpError("Invalid id", 404);
 	const classification = await classificationService.findOne({ where: { id } });
 	if (!classification) throw new HttpError("Classification not found", 404);
-	await classificationService.deleteOne({ where: { id } });
-	res.status(204).send();
+	const classificationDeleted = await classificationService.deleteOne({
+		where: { id },
+	});
+	res.status(204).send(classificationDeleted);
 };
 
 export const classificationController = {

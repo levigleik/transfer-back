@@ -118,8 +118,8 @@ const deleteBrand = async (req: Request, res: Response, next: NextFunction) => {
 	if (!id) throw new HttpError("Invalid id", 404);
 	const brand = await brandService.findOne({ where: { id } });
 	if (!brand) throw new HttpError("Brand not found", 404);
-	await brandService.deleteOne({ where: { id } });
-	res.status(204).send();
+	const brandDeleted = await brandService.deleteOne({ where: { id } });
+	res.status(204).send(brandDeleted);
 };
 
 export const brandController = {

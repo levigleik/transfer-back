@@ -469,9 +469,6 @@
               }
             }
           },
-          "204": {
-            "description": "No Content"
-          },
           "404": {
             "description": "Category not found"
           }
@@ -3588,7 +3585,7 @@
         },
         "additionalProperties": false
       },
-      "Documentation": {
+      "Gas": {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "type": "object",
         "properties": {
@@ -3597,26 +3594,6 @@
           },
           "type": {
             "type": "string"
-          },
-          "expiryAt": {
-            "type": "string",
-            "format": "date-time",
-            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
-          },
-          "anticipateRenewal": {
-            "type": "boolean"
-          },
-          "days": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "document": {
-            "type": "string"
-          },
-          "vehicleId": {
-            "type": "integer"
           },
           "createdAt": {
             "type": "string",
@@ -3632,17 +3609,12 @@
         "required": [
           "id",
           "type",
-          "expiryAt",
-          "anticipateRenewal",
-          "days",
-          "document",
-          "vehicleId",
           "createdAt",
           "updatedAt"
         ],
         "additionalProperties": false
       },
-      "PublicDocumentation": {
+      "PublicGas": {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "type": "object",
         "properties": {
@@ -3651,26 +3623,6 @@
           },
           "type": {
             "type": "string"
-          },
-          "expiryAt": {
-            "type": "string",
-            "format": "date-time",
-            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
-          },
-          "anticipateRenewal": {
-            "type": "boolean"
-          },
-          "days": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "document": {
-            "type": "string"
-          },
-          "vehicleId": {
-            "type": "integer"
           },
           "createdAt": {
             "type": "string",
@@ -3686,80 +3638,43 @@
         "required": [
           "id",
           "type",
-          "expiryAt",
-          "anticipateRenewal",
-          "days",
-          "document",
-          "vehicleId",
           "createdAt",
           "updatedAt"
         ],
         "additionalProperties": false
       },
-      "createDocumentation": {
+      "createGas": {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "type": "object",
         "properties": {
           "type": {
             "type": "string"
-          },
-          "expiryAt": {
-            "type": "string",
-            "format": "date-time",
-            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
-          },
-          "days": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "anticipateRenewal": {
-            "type": "boolean"
-          },
-          "document": {
-            "type": "string"
-          },
-          "vehicleId": {
-            "type": "integer"
           }
         },
         "required": [
-          "type",
-          "expiryAt",
-          "days",
-          "anticipateRenewal",
-          "document",
-          "vehicleId"
+          "type"
         ],
         "additionalProperties": false
       },
-      "updateDocumentation": {
+      "gas": {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "type": "object",
         "properties": {
           "type": {
             "type": "string"
-          },
-          "expiryAt": {
-            "type": "string",
-            "format": "date-time",
-            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
-          },
-          "days": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "anticipateRenewal": {
-            "type": "boolean"
-          },
-          "document": {
+          }
+        },
+        "required": [
+          "type"
+        ],
+        "additionalProperties": false
+      },
+      "updateGas": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "type": {
             "type": "string"
-          },
-          "vehicleId": {
-            "type": "integer"
           }
         },
         "additionalProperties": false
@@ -3963,7 +3878,7 @@
         },
         "additionalProperties": false
       },
-      "Gas": {
+      "Documentation": {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "type": "object",
         "properties": {
@@ -3972,6 +3887,26 @@
           },
           "type": {
             "type": "string"
+          },
+          "expiryAt": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+          },
+          "anticipateRenewal": {
+            "type": "boolean"
+          },
+          "days": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "document": {
+            "type": "string"
+          },
+          "vehicleId": {
+            "type": "integer"
           },
           "createdAt": {
             "type": "string",
@@ -3987,12 +3922,17 @@
         "required": [
           "id",
           "type",
+          "expiryAt",
+          "anticipateRenewal",
+          "days",
+          "document",
+          "vehicleId",
           "createdAt",
           "updatedAt"
         ],
         "additionalProperties": false
       },
-      "PublicGas": {
+      "PublicDocumentation": {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "type": "object",
         "properties": {
@@ -4001,6 +3941,26 @@
           },
           "type": {
             "type": "string"
+          },
+          "expiryAt": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+          },
+          "anticipateRenewal": {
+            "type": "boolean"
+          },
+          "days": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "document": {
+            "type": "string"
+          },
+          "vehicleId": {
+            "type": "integer"
           },
           "createdAt": {
             "type": "string",
@@ -4016,43 +3976,80 @@
         "required": [
           "id",
           "type",
+          "expiryAt",
+          "anticipateRenewal",
+          "days",
+          "document",
+          "vehicleId",
           "createdAt",
           "updatedAt"
         ],
         "additionalProperties": false
       },
-      "createGas": {
+      "createDocumentation": {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "type": "object",
         "properties": {
           "type": {
             "type": "string"
+          },
+          "expiryAt": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+          },
+          "days": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "anticipateRenewal": {
+            "type": "boolean"
+          },
+          "document": {
+            "type": "string"
+          },
+          "vehicleId": {
+            "type": "integer"
           }
         },
         "required": [
-          "type"
+          "type",
+          "expiryAt",
+          "days",
+          "anticipateRenewal",
+          "document",
+          "vehicleId"
         ],
         "additionalProperties": false
       },
-      "gas": {
+      "updateDocumentation": {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "type": "object",
         "properties": {
           "type": {
             "type": "string"
-          }
-        },
-        "required": [
-          "type"
-        ],
-        "additionalProperties": false
-      },
-      "updateGas": {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "type": "object",
-        "properties": {
-          "type": {
+          },
+          "expiryAt": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+          },
+          "days": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "anticipateRenewal": {
+            "type": "boolean"
+          },
+          "document": {
             "type": "string"
+          },
+          "vehicleId": {
+            "type": "integer"
           }
         },
         "additionalProperties": false
