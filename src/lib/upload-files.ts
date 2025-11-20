@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import mime from "mime-types";
 import multer from "multer";
-import { uuidv7 } from "zod";
+import { uuidv7 } from "uuidv7";
 
 const UPLOAD_ROOT = path.join(process.cwd(), "uploads", "files");
 

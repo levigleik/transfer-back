@@ -178,7 +178,7 @@ const uploadDocumentationFile = async (
 
 		const files = (req.files ?? []) as Express.Multer.File[];
 
-		if (!files) throw new HttpError("No file uploaded", 400);
+		if (!files.length) throw new HttpError("No file uploaded", 400);
 
 		const tempDocumentation = (await documentationService.findOne({
 			where: { id },
@@ -193,13 +193,18 @@ const uploadDocumentationFile = async (
 			try {
 				const existingFile = tempDocumentation.file;
 				const fsPath = path.join(process.cwd(), existingFile.path);
-				fs.unlink(fsPath, () => {});
+				fs.unlink(fsPath, (err) => {
+					console.error("--", err);
+				});
 
 				await prisma.file.delete({ where: { id: existingFile.id } });
 			} catch (err) {
 				console.error("Erro ao remover arquivo antigo:", err);
 			}
 		}
+
+		console.log("files", files);
+
 		const fileCreated = await documentationService.createFileRecordFromMulter(
 			files[0],
 		);
@@ -224,7 +229,7 @@ const uploadDocumentationFile = async (
 			throw new HttpError("Documentation not found after update", 404);
 		}
 
-		res.status(200).json(documentation);
+		res.status(200).json();
 	} catch (err) {
 		console.error("------------", err);
 		next(err);

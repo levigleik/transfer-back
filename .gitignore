@@ -4,3 +4,4 @@ node_modules
 dist
 src/types/prisma/**/*.ts
 uploads/vehicles/vehicle-*
+uploads/files/*

@@ -7,11 +7,14 @@ const documentationCrudService = createCachedService<
 	typeof prisma.documentation
 >("documentation", prisma.documentation);
 
-async function createFileRecordFromMulter(file: Express.Multer.File) {
+async function createFileRecordFromMulter(file?: Express.Multer.File) {
+	if (!file) {
+		throw Error("File not found");
+	}
 	const created = await prisma.file.create({
 		data: {
 			fileName: file.originalname,
-			path: `/uploads/docs/${file.filename}`,
+			path: `/uploads/files/${file.filename}`,
 			mimeType: file.mimetype,
 			size: file.size,
 		},
