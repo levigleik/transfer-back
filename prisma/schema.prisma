@@ -168,12 +168,16 @@ model GasSupply {
   quantity   Float
   supplyAt   DateTime
   totalPrice Float
-  receipt    String
 
-  gas       Gas     @relation(fields: [gasId], references: [id])
-  gasId     Int
-  vehicle   Vehicle @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
-  vehicleId Int
+  gas          Gas        @relation(fields: [gasId], references: [id])
+  gasId        Int
+  vehicle      Vehicle    @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  vehicleId    Int
+  gasStation   GasStation @relation(fields: [gasStationId], references: [id])
+  gasStationId Int
+
+  file   File? @relation(fields: [fileId], references: [id])
+  fileId Int?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -183,6 +187,8 @@ model GasStation {
   id Int @id @default(autoincrement())
 
   name String
+
+  gasSupplies GasSupply[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -207,7 +213,8 @@ model File {
   size     Int
 
   documentations Documentation[]
-  occurrence     Occurrence[]
+  occurrences    Occurrence[]
+  gasSupplies    GasSupply[]
 
   createdAt DateTime @default(now())
 }

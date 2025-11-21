@@ -1,6 +1,8 @@
 import { HttpError } from "@/lib/error/http-error";
 import { getQuery } from "@/lib/query";
+import type { File, GasSupply } from "@prisma/client";
 import type { NextFunction, Request, Response } from "express";
+import { fileService } from "../file/file.service";
 import type {
 	CreateGasSupplyDTO,
 	UpdateGasSupplyDTO,
@@ -78,12 +80,14 @@ const createGasSupply = async (
 			gas: {
 				connect: { id: gasSupply.gasId },
 			},
+			gasStation: {
+				connect: { id: gasSupply.gasStationId },
+			},
 			vehicle: {
 				connect: {
 					id: gasSupply.vehicleId,
 				},
 			},
-			receipt: gasSupply.receipt,
 		},
 	});
 	res.status(201).json(savedGasSupply);
@@ -117,7 +121,9 @@ const updateGasSupply = async (
 			supplyAt: data.supplyAt,
 			quantity: data.quantity,
 			totalPrice: data.totalPrice,
-			receipt: data.receipt,
+			gasStation: data.gasStationId
+				? { connect: { id: data.gasStationId } }
+				: undefined,
 			gas: data.gasId ? { connect: { id: data.gasId } } : undefined,
 		},
 		where: { id },
@@ -145,10 +151,102 @@ const deleteGasSupply = async (
 	*/
 	const id = Number(req.params.id);
 	if (!id) throw new HttpError("Invalid id", 404);
-	const gasSupply = await gasSupplyService.findOne({ where: { id } });
+	const gasSupply = (await gasSupplyService.findOne({
+		where: { id },
+		include: { file: true },
+	})) as GasSupply & { file: File };
+
 	if (!gasSupply) throw new HttpError("GasSupply not found", 404);
-	const gasSupplyDeleted = await gasSupplyService.deleteOne({ where: { id } });
+	const gasSupplyDeleted = await gasSupplyService.deleteOne({
+		where: { id },
+	});
+
+	if (gasSupply.fileId) {
+		fileService.deleteFile(gasSupply.file);
+		await fileService.deleteOne({ where: { id: gasSupply.fileId } });
+	}
 	res.status(204).send(gasSupplyDeleted);
+};
+
+const uploadGasSupplyFile = async (
+	req: Request,
+	res: Response,
+	next: NextFunction,
+) => {
+	/*
+		#swagger.tags = ['GasSupply']
+		#swagger.consumes = ['multipart/form-data']
+		#swagger.requestBody = {
+			required: true,
+			content: {
+				"multipart/form-data": {
+					schema: {
+						type: "object",
+						properties: {
+							files: {
+								type: "string",
+								format: "binary"
+							}
+						}
+					}
+				}
+			}
+		}
+	*/
+
+	try {
+		const id = Number(req.params.id);
+		if (!id) throw new HttpError("Invalid id", 400);
+
+		const files = (req.files ?? []) as Express.Multer.File[];
+
+		if (!files.length) throw new HttpError("No file uploaded", 400);
+
+		const tempGasSupply = (await gasSupplyService.findOne({
+			where: { id },
+			include: { file: true },
+		})) as GasSupply & { file: File };
+
+		if (!tempGasSupply) {
+			throw new HttpError("GasSupply not found", 404);
+		}
+
+		if (tempGasSupply.fileId !== null && tempGasSupply.file) {
+			try {
+				fileService.deleteFile(tempGasSupply.file);
+
+				await fileService.deleteOne({
+					where: { id: tempGasSupply.file.id },
+				});
+			} catch (err) {
+				console.error("Erro ao remover arquivo antigo:", err);
+			}
+		}
+
+		const fileCreated = await fileService.createFileRecordFromMulter(
+			"gasSupply",
+			files[0],
+		);
+
+		const gasSupply = await gasSupplyService.update({
+			where: { id },
+			data: {
+				file: {
+					connect: {
+						id: fileCreated.id,
+					},
+				},
+			},
+		});
+
+		if (!gasSupply) {
+			throw new HttpError("GasSupply not found after update", 404);
+		}
+
+		res.status(200).json(gasSupply);
+	} catch (err) {
+		next(err);
+	}
 };
 
 export const gasSupplyController = {
@@ -157,4 +255,5 @@ export const gasSupplyController = {
 	createGasSupply,
 	updateGasSupply,
 	deleteGasSupply,
+	uploadGasSupplyFile,
 };

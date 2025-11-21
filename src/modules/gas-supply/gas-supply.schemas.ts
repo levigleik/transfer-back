@@ -1,5 +1,5 @@
 import { GasSupplySchema } from "@/types/prisma/schemas";
-import type { z } from "zod";
+import { z } from "zod";
 
 export const PublicGasSupplySchema = GasSupplySchema;
 
@@ -13,12 +13,18 @@ const gasSupplySchema = GasSupplySchema.pick({
 	totalPrice: true,
 	gasId: true,
 	vehicleId: true,
-	receipt: true,
+	gasStationId: true,
 });
 
-export const createGasSupplySchema = gasSupplySchema;
+export const createGasSupplySchema = gasSupplySchema.extend({
+	supplyAt: z.coerce.date(),
+});
 
-export const updateGasSupplySchema = gasSupplySchema.partial();
+export const updateGasSupplySchema = gasSupplySchema
+	.extend({
+		supplyAt: z.coerce.date(),
+	})
+	.partial();
 
 export type CreateGasSupplyDTO = z.infer<typeof createGasSupplySchema>;
 export type UpdateGasSupplyDTO = z.infer<typeof updateGasSupplySchema>;

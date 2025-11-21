@@ -214,7 +214,7 @@ const uploadOccurrenceFile = async (
 		}
 
 		const fileCreated = await fileService.createFileRecordFromMulter(
-			"ocurrence",
+			"occurrence",
 			files[0],
 		);
 

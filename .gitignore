@@ -6,3 +6,4 @@ src/types/prisma/**/*.ts
 uploads/vehicles/vehicle-*
 uploads/documentation/*
 uploads/occurrence/*
+uploads/gasSupply/*
