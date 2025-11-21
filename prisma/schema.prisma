@@ -121,9 +121,9 @@ model Documentation {
 model Occurrence {
   id Int @id @default(autoincrement())
 
-  date        DateTime
-  description String
-  attachment  String
+  occurrenceDate DateTime
+  registerDate   DateTime
+  description    String
 
   seriousness      Seriousness    @relation(fields: [seriousnessId], references: [id])
   seriousnessId    Int
@@ -131,6 +131,8 @@ model Occurrence {
   classificationId Int
   vehicle          Vehicle        @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
   vehicleId        Int
+  file             File?          @relation(fields: [fileId], references: [id])
+  fileId           Int?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -205,6 +207,7 @@ model File {
   size     Int
 
   documentations Documentation[]
+  occurrence     Occurrence[]
 
   createdAt DateTime @default(now())
 }

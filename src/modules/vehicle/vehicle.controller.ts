@@ -174,7 +174,6 @@ const uploadVehiclePhotos = async (
 ) => {
 	/*
     #swagger.tags = ['Vehicle']
-    #swagger.security = [{ "bearerAuth": [] }]
     #swagger.consumes = ['multipart/form-data']
     #swagger.requestBody = {
       required: true,

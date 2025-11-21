@@ -18,7 +18,27 @@ function deleteFile(file: File) {
 	}
 }
 
+async function createFileRecordFromMulter(
+	path: string,
+	file?: Express.Multer.File,
+) {
+	if (!file) {
+		throw Error("File not found");
+	}
+	const created = await prisma.file.create({
+		data: {
+			fileName: file.originalname,
+			path: `/uploads/${path}/${file.filename}`,
+			mimeType: file.mimetype,
+			size: file.size,
+		},
+	});
+
+	return created;
+}
+
 export const fileService = {
 	...fileCrudService,
 	deleteFile,
+	createFileRecordFromMulter,
 };

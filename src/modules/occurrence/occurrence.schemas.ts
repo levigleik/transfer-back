@@ -1,5 +1,5 @@
 import { OccurrenceSchema } from "@/types/prisma/schemas";
-import type { z } from "zod";
+import { z } from "zod";
 
 export const PublicOccurrenceSchema = OccurrenceSchema;
 
@@ -7,16 +7,24 @@ export { OccurrenceSchema };
 
 export const occurrenceSchema = OccurrenceSchema.pick({
 	description: true,
-	date: true,
+	occurrenceDate: true,
+	registerDate: true,
 	seriousnessId: true,
 	classificationId: true,
 	vehicleId: true,
-	attachment: true,
 });
 
-export const createOccurrenceSchema = occurrenceSchema;
+export const createOccurrenceSchema = occurrenceSchema.extend({
+	registerDate: z.coerce.date(),
+	occurrenceDate: z.coerce.date(),
+});
 
-export const updateOccurrenceSchema = occurrenceSchema.partial();
+export const updateOccurrenceSchema = occurrenceSchema
+	.extend({
+		registerDate: z.coerce.date(),
+		occurrenceDate: z.coerce.date(),
+	})
+	.partial();
 
 export type CreateOccurrenceDTO = z.infer<typeof createOccurrenceSchema>;
 export type UpdateOccurrenceDTO = z.infer<typeof updateOccurrenceSchema>;

@@ -9,6 +9,10 @@ import { uploadFiles } from "@/lib/upload-files";
 
 const documentationRouter = express.Router();
 
+const documentationDocsUploader = uploadFiles((req) => {
+	return `documentation/${req.params.id}/docs`;
+});
+
 documentationRouter
 	.route("/documentation")
 	.get(documentationController.getDocumentations)
@@ -28,7 +32,7 @@ documentationRouter
 
 documentationRouter.post(
 	"/documentation/:id/docs",
-	uploadFiles.array("files", 1),
+	documentationDocsUploader.array("files", 1),
 	documentationController.uploadDocumentationFile,
 );
 

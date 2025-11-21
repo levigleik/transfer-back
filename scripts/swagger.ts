@@ -99,12 +99,6 @@ export async function generateSwaggerDocs() {
 		host: `localhost:${process.env.PORT || 3000}`,
 		components: {
 			"@schemas": schemas,
-			securitySchemes: {
-				bearerAuth: {
-					type: "http",
-					scheme: "bearer",
-				},
-			},
 		},
 	};
 	const outputFile = "../swagger-output.json";

@@ -18,7 +18,6 @@ export const createVehicleSchema = VehicleSchema.pick({
 	chassi: true,
 	review: true,
 	description: true,
-	// photos: true,
 	gasId: true,
 	companyId: true,
 	categoryId: true,

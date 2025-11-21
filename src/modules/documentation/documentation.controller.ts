@@ -5,12 +5,12 @@ import { prisma } from "@/lib/prisma";
 import { getQuery } from "@/lib/query";
 import type { Documentation, File } from "@prisma/client";
 import type { NextFunction, Request, Response } from "express";
+import { fileService } from "../file/file.service";
 import type {
 	CreateDocumentationDTO,
 	UpdateDocumentationDTO,
 } from "./documentation.schemas";
 import { documentationService } from "./documentation.service";
-import { fileService } from "../file/file.service";
 
 const getOneDocumentation = async (
 	req: Request,
@@ -142,10 +142,12 @@ const deleteDocumentation = async (
 		where: { id },
 		include: { file: true },
 	})) as Documentation & { file: File };
+
 	if (!documentation) throw new HttpError("Documentation not found", 404);
 	const documentationDeleted = await documentationService.deleteOne({
 		where: { id },
 	});
+
 	if (documentation.fileId) {
 		fileService.deleteFile(documentation.file);
 		await fileService.deleteOne({ where: { id: documentation.fileId } });
@@ -160,7 +162,6 @@ const uploadDocumentationFile = async (
 ) => {
 	/*
 		#swagger.tags = ['Documentation']
-		#swagger.security = [{ "bearerAuth": [] }]
 		#swagger.consumes = ['multipart/form-data']
 		#swagger.requestBody = {
 			required: true,
@@ -209,7 +210,8 @@ const uploadDocumentationFile = async (
 			}
 		}
 
-		const fileCreated = await documentationService.createFileRecordFromMulter(
+		const fileCreated = await fileService.createFileRecordFromMulter(
+			"documentation",
 			files[0],
 		);
 
@@ -230,7 +232,6 @@ const uploadDocumentationFile = async (
 
 		res.status(200).json(documentation);
 	} catch (err) {
-		console.error("------------", err);
 		next(err);
 	}
 };
