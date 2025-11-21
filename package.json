@@ -2,10 +2,13 @@
 	"name": "transfer",
 	"version": "1.0.0",
 	"description": "Transfer Pass",
+	"author": "levigleik",
+	"license": "ISC",
 	"scripts": {
 		"build": "bunx tsc --project tsconfig.json && bunx tsc-alias -p tsconfig.json",
 		"dev": "bun run --env-file=.env.development --watch src/index.ts",
 		"dev:swagger": "bun run --env-file=.env.development --watch scripts/swagger.ts",
+		"generate:module": "node scripts/generateModules.mjs",
 		"lint": "npx biome format --write . && biome lint",
 		"start": "bun run dist/src/index.js",
 		"swagger:prod": "bun run scripts/swagger.prod.ts",
@@ -18,8 +21,9 @@
 		"prisma_deploy:prod": "bun run --env-file=.env.production bunx prisma migrate deploy",
 		"prisma_reset:dev": "bun run --env-file=.env.development bunx prisma migrate reset"
 	},
-	"author": "levigleik",
-	"license": "ISC",
+	"prisma": {
+		"seed": "bun run prisma/seed.ts"
+	},
 	"dependencies": {
 		"@prisma/client": "^6.16.3",
 		"@scalar/express-api-reference": "^0.8.22",
@@ -30,11 +34,13 @@
 		"express-async-errors": "^3.1.1",
 		"ioredis": "^5.8.1",
 		"jsonwebtoken": "^9.0.2",
+		"multer": "^2.0.2",
 		"pino": "^10.0.0",
 		"pino-http": "^11.0.0",
 		"pino-pretty": "^13.1.2",
 		"swagger-autogen": "^2.23.7",
 		"tsconfig-paths": "^4.2.0",
+		"uuidv7": "^1.0.2",
 		"zod": "^4.1.12",
 		"zod-to-json-schema": "^3.24.6"
 	},
@@ -51,6 +57,7 @@
 		"@types/jest": "^30.0.0",
 		"@types/json-schema": "^7.0.15",
 		"@types/jsonwebtoken": "^9.0.9",
+		"@types/multer": "^2.0.0",
 		"@types/node": "^22.13.11",
 		"@types/pino": "^7.0.5",
 		"@types/pino-http": "^6.1.0",

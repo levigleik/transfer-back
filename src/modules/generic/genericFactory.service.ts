@@ -1,5 +1,5 @@
 import crypto from "node:crypto";
-import { redis } from "@/lib/redis";
+import { EXPIRE_REDIS_CACHE_SECONDS, redis } from "@/lib/redis";
 
 interface PrismaDelegate {
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -65,7 +65,7 @@ export function createCachedService<
 
 		if (item) {
 			await redis.set(cacheKey, JSON.stringify(item));
-			await redis.expire(cacheKey, 3600);
+			await redis.expire(cacheKey, EXPIRE_REDIS_CACHE_SECONDS);
 		}
 
 		return item;
@@ -88,13 +88,14 @@ export function createCachedService<
 		const items = await prismaDelegate.findMany(args);
 
 		await redis.set(cacheKey, JSON.stringify(items));
-		await redis.expire(cacheKey, 600);
+		await redis.expire(cacheKey, EXPIRE_REDIS_CACHE_SECONDS);
 
 		return items;
 	};
 
 	const create = async (args: CreateArgs): Promise<T> => {
 		const newItem = await prismaDelegate.create(args);
+
 		await invalidateListCache();
 		return newItem;
 	};

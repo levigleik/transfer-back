@@ -35,10 +35,6 @@ const createRedisClient = (): Redis => {
 		? new Redis(url, { lazyConnect: true })
 		: new Redis(getRedisOptions());
 
-	client.on("connect", () => {
-		logger.info("Redis connecting...");
-	});
-
 	client.on("ready", () => {
 		logger.info("Redis connection ready ✅");
 	});
@@ -82,3 +78,5 @@ export const checkRedisHealth = async (): Promise<boolean> => {
 		return false;
 	}
 };
+
+export const EXPIRE_REDIS_CACHE_SECONDS = 600;

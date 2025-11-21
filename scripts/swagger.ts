@@ -1,7 +1,26 @@
 import path from "node:path";
 import { glob } from "glob";
 import swaggerAutogen from "swagger-autogen";
-import { toJSONSchema, z } from "zod";
+import { ZodDate, ZodNullable, ZodOptional, toJSONSchema, z } from "zod";
+
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+function cleanIntegerLimits(schema: any) {
+	if (schema.type === "integer") {
+		// biome-ignore lint/performance/noDelete: <explanation>
+		if (schema.minimum === Number.MIN_SAFE_INTEGER) delete schema.minimum;
+		// biome-ignore lint/performance/noDelete: <explanation>
+		if (schema.maximum === Number.MAX_SAFE_INTEGER) delete schema.maximum;
+	}
+
+	// Recursivo para objetos
+	if (schema.properties) {
+		for (const key of Object.keys(schema.properties)) {
+			cleanIntegerLimits(schema.properties[key]);
+		}
+	}
+
+	return schema;
+}
 
 /**
  * Remove as transformações de um schema Zod para torná-lo compatível com toJsonSchema.
@@ -9,27 +28,47 @@ import { toJSONSchema, z } from "zod";
  * @param schema O schema Zod a ser sanitizado.
  * @returns Um novo schema Zod sem transformações.
  */
-
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-export function sanitizeSchema(schema: z.ZodObject<any, any>) {
+export function sanitizeSchema(schema: any): any {
 	const shape = schema.shape;
-	const newShape = { ...shape };
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	const newShape: Record<string, any> = {};
 
 	for (const key in shape) {
 		const field = shape[key];
 
-		const isDate = field.def.type === "date";
-
-		if (isDate) {
-			newShape[key] = z.iso.datetime({
-				message: "Date must be in ISO 8601 format",
-			});
+		// unwrap optional
+		if (field instanceof ZodOptional) {
+			const inner = field._def.innerType;
+			const sanitizedInner = sanitizeField(inner);
+			newShape[key] = z.optional(sanitizedInner);
 			continue;
 		}
-		newShape[key] = field;
+
+		// unwrap nullable
+		if (field instanceof ZodNullable) {
+			const inner = field._def.innerType;
+			const sanitizedInner = sanitizeField(inner);
+			newShape[key] = z.nullable(sanitizedInner);
+			continue;
+		}
+
+		newShape[key] = sanitizeField(field);
 	}
 
 	return z.object(newShape);
+}
+
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+function sanitizeField(field: any): any {
+	// transforma date → string.datetime()
+	if (field instanceof ZodDate) {
+		return z.iso.datetime({
+			message: "Date must be in ISO 8601 format",
+		});
+	}
+
+	return field; // outros tipos permanecem iguais
 }
 
 export async function generateSwaggerDocs() {
@@ -45,8 +84,9 @@ export async function generateSwaggerDocs() {
 
 			if (exportedItem instanceof z.ZodObject) {
 				const schemaName = key.replace(/Schema$/, "");
-				const sanitizedSchema = sanitizeSchema(exportedItem);
-				schemas[schemaName] = toJSONSchema(sanitizedSchema);
+				const sanitized = sanitizeSchema(exportedItem);
+				schemas[schemaName] = toJSONSchema(sanitized);
+				cleanIntegerLimits(schemas[schemaName]);
 			}
 		}
 	}
@@ -59,12 +99,6 @@ export async function generateSwaggerDocs() {
 		host: `localhost:${process.env.PORT || 3000}`,
 		components: {
 			"@schemas": schemas,
-			securitySchemes: {
-				bearerAuth: {
-					type: "http",
-					scheme: "bearer",
-				},
-			},
 		},
 	};
 	const outputFile = "../swagger-output.json";
