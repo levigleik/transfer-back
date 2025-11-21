@@ -101,7 +101,7 @@ Siga os passos abaixo para configurar e rodar o projeto diretamente na sua máqu
 
 ### 1. Variáveis de Ambiente
 
-Crie um arquivo `.env` na raiz do projeto, copiando o exemplo do arquivo `.env.example` (se existir) ou usando o modelo abaixo. Substitua os valores conforme necessário.
+Crie um arquivo `.env.development` na raiz do projeto, copiando o exemplo do arquivo `.env.example` (se existir) ou usando o modelo abaixo. Substitua os valores conforme necessário.
 
 ```env
 # Variáveis da Aplicação
@@ -112,7 +112,10 @@ PORT=3000
 DATABASE_URL="postgresql://docker:docker@localhost:5432/transfer?schema=public"
 
 # URL de Conexão com o Redis
-REDIS_URL="redis://localhost:6379"
+REDIS_HOST=127.0.0.1
+REDIS_PORT=6379
+REDIS_PASSWORD=
+
 ```
 
 ### 2. Instalação de Dependências
@@ -120,9 +123,6 @@ REDIS_URL="redis://localhost:6379"
 Você pode usar `npm`, `yarn` ou `bun`. Escolha um e execute o comando correspondente na raiz do projeto:
 
 ```bash
-# Com NPM
-npm install
-
 # Com Yarn
 yarn install
 
@@ -135,9 +135,11 @@ bun install
 Assumindo que você tenha uma instância do PostgreSQL rodando localmente, execute os seguintes comandos do Prisma para preparar o banco de dados:
 
 1.  **Aplicar as migrações:**
-    Este comando irá criar as tabelas e estruturas no banco de dados com base nos arquivos de migração.
+    Este comando irá criar as tabelas e estruturas no banco de dados com base nos arquivos de migração. 
+    
+    (execute o script do package.json "prisma_migrate:dev")
     ```bash
-    npx prisma migrate dev
+    npm run prisma_migrate:dev
     ```
 
 2.  **(Opcional) Popular o banco de dados:**
@@ -151,9 +153,6 @@ Assumindo que você tenha uma instância do PostgreSQL rodando localmente, execu
 Para iniciar o servidor em modo de desenvolvimento (com hot-reload), utilize o script `dev`:
 
 ```bash
-# Com NPM
-npm run dev
-
 # Com Yarn
 yarn dev
 
