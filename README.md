@@ -1,115 +1,182 @@
-# CRUD Project
+# API de Gerenciamento de Frota
 
-This project is a full-stack CRUD application using **Node.js**, **Express**, **Prisma**, **Zod**, and **Bun** as runtime and package manager. It comes with automated API documentation, JWT authentication, logging, testing, and containerization.
+Esta é uma API RESTful robusta construída com Node.js e TypeScript, projetada para o gerenciamento completo de frotas de veículos. Ela oferece funcionalidades para cadastro de veículos, motoristas, ocorrências, controle de abastecimento, documentação e muito mais.
 
-## Features
+## 📋 Tabela de Conteúdos
 
-* **Express** API server
-* **Prisma ORM** with PostgreSQL
-* **Zod** schemas with automatic JSON Schema generation for Swagger
-* **Swagger Autogen** for API documentation
-* **Bun** for runtime, package management, and TypeScript compilation
-* **Pino** for logging
-* **JWT Authentication** with middleware
-* **Redis** caching
-* **Docker & Docker Compose** for containerized deployment
-* **Healthcheck Route** at `/health`
-* **Environment configurations** using `.env` files for dev, test, production, and docker
-* **Unit testing** with Jest
+- [Tecnologias e Ferramentas](#-tecnologias-e-ferramentas)
+- [Estrutura de Pastas](#-estrutura-de-pastas)
+- [Pré-requisitos](#-pré-requisitos)
+- [Como Executar (Docker)](#-como-executar-com-docker-recomendado)
+- [Como Executar (Localmente)](#-como-executar-localmente)
+  - [1. Variáveis de Ambiente](#1-variáveis-de-ambiente)
+  - [2. Instalação de Dependências](#2-instalação-de-dependências)
+  - [3. Banco de Dados](#3-banco-de-dados)
+  - [4. Executando a Aplicação](#4-executando-a-aplicação)
+- [Scripts Disponíveis](#-scripts-disponíveis)
+- [Documentação da API](#-documentação-da-api)
 
-## Installation
+---
+
+## 🚀 Tecnologias e Ferramentas
+
+Este projeto utiliza um conjunto de tecnologias modernas para garantir performance, escalabilidade e manutenibilidade.
+
+- **Backend:** Node.js com TypeScript
+- **Framework:** Express.js para o roteamento e middlewares
+- **Banco de Dados:** PostgreSQL
+- **ORM:** Prisma para uma interação segura e tipada com o banco de dados
+- **Cache:** Redis para caching de queries e gerenciamento de sessões
+- **Validação:** Zod para validação de schemas e dados de entrada
+- **Containerização:** Docker e Docker Compose para um ambiente de desenvolvimento e produção consistente
+- **Linting e Formatação:** Biome para garantir um código limpo e padronizado
+- **Documentação de API:** Swagger para geração automática de documentação interativa
+
+---
+
+## 📁 Estrutura de Pastas
+
+A estrutura do projeto é organizada de forma modular, visando a separação de responsabilidades e a fácil localização dos arquivos.
+
+```
+/
+├── prisma/             # Contém o schema do banco, migrações e seeds
+├── scripts/            # Scripts utilitários (ex: geração de módulos, swagger)
+├── src/                # Código-fonte da aplicação
+│   ├── lib/            # Módulos e utilitários compartilhados (Prisma, Redis, etc.)
+│   ├── middleware/     # Middlewares do Express (erros, validação)
+│   ├── modules/        # Módulos de negócio da aplicação (veículos, usuários, etc.)
+│   │   ├── brand/      # Exemplo de um módulo com controller, service, routes e schemas
+│   │   └── ...         # Outros módulos...
+│   ├── routes/         # Arquivo principal que agrega todas as rotas
+│   └── app.ts          # Arquivo de configuração principal do Express
+├── tests/              # Testes da aplicação
+├── uploads/            # Pasta para armazenamento de arquivos enviados (documentos, imagens)
+├── .dockerignore       # Arquivos a serem ignorados pelo Docker
+├── .gitignore          # Arquivos a serem ignorados pelo Git
+├── docker-compose.yml  # Orquestração dos containers (API, Postgres, Redis)
+├── Dockerfile          # Definição do container da API
+├── package.json        # Dependências e scripts do projeto
+└── tsconfig.json       # Configurações do compilador TypeScript
+```
+
+---
+
+## ✅ Pré-requisitos
+
+- [Node.js](https://nodejs.org/en/) (v18 ou superior)
+- [Docker](https://www.docker.com/get-started) e [Docker Compose](https://docs.docker.com/compose/install/)
+- Um gerenciador de pacotes: [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm), [Yarn](https://classic.yarnpkg.com/en/docs/install) ou [Bun](https://bun.sh/docs/installation)
+
+---
+
+## 🐳 Como Executar com Docker (Recomendado)
+
+A forma mais simples e rápida de subir todo o ambiente (API, Postgres e Redis) é utilizando o Docker Compose.
+
+1.  **Clone o repositório:**
+    ```bash
+    git clone https://github.com/levigleik/transfer-back
+    cd transfer-back
+    ```
+
+2.  **Suba os containers:**
+    Execute o comando a seguir na raiz do projeto. Ele irá construir a imagem da API e iniciar os serviços de banco de dados e cache em background.
+    ```bash
+    docker-compose up -d
+    ```
+
+A API estará disponível em `http://localhost:3000`.
+
+Para parar todos os serviços, execute:
+```bash
+docker-compose down
+```
+
+---
+
+## 💻 Como Executar Localmente
+
+Siga os passos abaixo para configurar e rodar o projeto diretamente na sua máquina.
+
+### 1. Variáveis de Ambiente
+
+Crie um arquivo `.env` na raiz do projeto, copiando o exemplo do arquivo `.env.example` (se existir) ou usando o modelo abaixo. Substitua os valores conforme necessário.
+
+```env
+# Variáveis da Aplicação
+NODE_ENV=development
+PORT=3000
+
+# URL de Conexão com o Banco de Dados (PostgreSQL)
+DATABASE_URL="postgresql://docker:docker@localhost:5432/transfer?schema=public"
+
+# URL de Conexão com o Redis
+REDIS_URL="redis://localhost:6379"
+```
+
+### 2. Instalação de Dependências
+
+Você pode usar `npm`, `yarn` ou `bun`. Escolha um e execute o comando correspondente na raiz do projeto:
 
 ```bash
-# Clone the repository
-git clone <repo-url>
-cd <repo-directory>
+# Com NPM
+npm install
 
-# Install dependencies
+# Com Yarn
+yarn install
+
+# Com Bun
 bun install
 ```
 
-## Environment Variables
+### 3. Banco de Dados
 
-Create the following `.env` files:
+Assumindo que você tenha uma instância do PostgreSQL rodando localmente, execute os seguintes comandos do Prisma para preparar o banco de dados:
 
-* `.env.development`
-* `.env.test`
-* `.env.production`
-* `.env.docker`
+1.  **Aplicar as migrações:**
+    Este comando irá criar as tabelas e estruturas no banco de dados com base nos arquivos de migração.
+    ```bash
+    npx prisma migrate dev
+    ```
 
-Example variables:
+2.  **(Opcional) Popular o banco de dados:**
+    Este comando executa os scripts da pasta `prisma/seeds` para popular o banco com dados iniciais.
+    ```bash
+    npx prisma db seed
+    ```
 
-```env
-PORT=3000
-DATABASE_URL=postgres://user:password@db:5432/app
-REDIS_HOST=redis
-REDIS_PORT=6379
-JWT_SECRET=your_jwt_secret
-JWT_REFRESH_SECRET=your_jwt_refresh_secret
-NODE_ENV=development
-```
+### 4. Executando a Aplicação
 
-## Running in Development
+Para iniciar o servidor em modo de desenvolvimento (com hot-reload), utilize o script `dev`:
 
 ```bash
-bun run dev:swagger       # Generate Swagger docs in development mode with watch
-bun run dev               # Start development server
+# Com NPM
+npm run dev
+
+# Com Yarn
+yarn dev
+
+# Com Bun
+bun dev
 ```
 
-Swagger will be available at `http://localhost:4000` by default in dev.
+---
 
-## Building and Running in Production
+## 📜 Scripts Disponíveis
 
-```bash
-# Build project and generate Swagger for production
-bun run swagger:prod
-bun run build
-bun run start
-```
+O arquivo `package.json` contém scripts úteis para o desenvolvimento:
 
-Server will run on `PORT` specified in `.env.production` (default 3000).
+- `dev`: Inicia o servidor em modo de desenvolvimento.
+- `build`: Compila o código TypeScript para JavaScript.
+- `start`: Inicia o servidor em modo de produção (requer `build` prévio).
+- `test`: Executa a suíte de testes com Jest.
+- `lint:check`: Verifica se há problemas de formatação e estilo.
 
-## Docker Deployment
+---
 
-```bash
-# Build and start containers
-docker-compose up --build
-```
+## 📚 Documentação da API
 
-Services included:
+Quando a aplicação está em execução, a documentação interativa do Swagger fica disponível. Você pode acessá-la para visualizar e testar todos os endpoints:
 
-* `crud_db`: PostgreSQL
-* `crud_redis`: Redis
-* `crud_app`: Node.js application with Bun
-
-## Testing
-
-```bash
-bun run test
-```
-
-## Healthcheck
-
-The app provides a healthcheck endpoint:
-
-```
-GET /health
-```
-
-Returns 200 OK if the service is running.
-
-## Logging
-
-Using **Pino** for structured logging. Logs are printed to console in development and production.
-
-## API Documentation
-
-Swagger documentation is generated automatically using **swagger-autogen** with schemas from Zod. Generated JSON can be found at `swagger-output.json`.
-
-## Notes
-
-* Make sure to run `bunx prisma generate` after modifying Prisma schema.
-* Redis is used for caching and session management.
-* JWT middleware protects routes requiring authentication.
-* All schema validations are done using Zod, with automatic conversion to JSON Schema for Swagger.
-* Separate `.env` files allow environment-specific configurations.
+[http://localhost:3000/api-docs](http://localhost:3000/api-docs)
