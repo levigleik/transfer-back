@@ -1,0 +1,13 @@
+{
+	"builds": [
+		{
+			"src": "dist/src/index.js",
+			"use": "@vercel/node"
+		}
+	],
+	"functions": {
+		"dist/src/*.js": {
+			"runtime": "nodejs20.x"
+		}
+	}
+}
