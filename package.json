@@ -4,6 +4,7 @@
 	"description": "Transfer Pass",
 	"author": "levigleik",
 	"license": "ISC",
+	"type": "module",
 	"scripts": {
 		"build": "npx tsc --project tsconfig.json && npx tsc-alias -p tsconfig.json",
 		"dev": "dotenv -e .env.development -- tsx watch src/index.ts",

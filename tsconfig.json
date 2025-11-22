@@ -1,9 +1,9 @@
 {
 	"compilerOptions": {
 		"types": ["bun", "jest"],
-		"module": "commonjs",
+		"module": "esnext",
 		"target": "es2020",
-		"moduleResolution": "node",
+		"moduleResolution": "bundler",
 		"declaration": true,
 		"removeComments": true,
 		"emitDecoratorMetadata": true,
