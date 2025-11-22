@@ -5,24 +5,25 @@
 	"author": "levigleik",
 	"license": "ISC",
 	"scripts": {
-		"build": "bunx tsc --project tsconfig.json && bunx tsc-alias -p tsconfig.json",
-		"dev": "bun run --env-file=.env.development --watch src/index.ts",
-		"dev:swagger": "bun run --env-file=.env.development --watch scripts/swagger.ts",
+		"build": "npx tsc --project tsconfig.json && npx tsc-alias -p tsconfig.json",
+		"dev": "dotenv -e .env.development -- tsx watch src/index.ts",
+		"dev:swagger": "dotenv -e .env.development -- tsx watch scripts/swagger.ts",
 		"generate:module": "node scripts/generateModules.mjs",
-		"lint": "npx biome format --write . && biome lint",
-		"start": "bun run dist/src/index.js",
-		"swagger:prod": "bun run scripts/swagger.prod.ts",
-		"test": "bun run --env-file=.env.test npx jest --detectOpenHandles --runInBand",
-		"prisma_studio:test": "bun run --env-file=.env.test bunx prisma studio",
-		"prisma_studio:dev": "bun run --env-file=.env.development bunx prisma studio",
-		"prisma_studio:prod": "bun run --env-file=.env.production bunx prisma studio",
-		"prisma_migrate:dev": "bun run --env-file=.env.development bunx prisma migrate dev",
-		"prisma_deploy:dev": "bun run --env-file=.env.development bunx prisma migrate deploy",
-		"prisma_deploy:prod": "bun run --env-file=.env.production bunx prisma migrate deploy",
-		"prisma_reset:dev": "bun run --env-file=.env.development bunx prisma migrate reset"
+		"lint": "npx biome format --write . && npx biome lint",
+		"start": "node dist/src/index.js",
+		"swagger:prod": "tsx scripts/swagger.prod.ts",
+		"test": "dotenv -e .env.test -- npx jest --detectOpenHandles --runInBand",
+		"prisma_studio:test": "dotenv -e .env.test -- npx prisma studio",
+		"prisma_studio:dev": "dotenv -e .env.development -- npx prisma studio",
+		"prisma_studio:prod": "dotenv -e .env.production -- npx prisma studio",
+		"prisma_migrate:dev": "dotenv -e .env.development -- npx prisma migrate dev",
+		"prisma_deploy:dev": "dotenv -e .env.development -- npx prisma migrate deploy",
+		"prisma_deploy:prod": "dotenv -e .env.production -- npx prisma migrate deploy",
+		"prisma_deploy:docker": "dotenv -e .env.docker -- npx prisma migrate deploy",
+		"prisma_reset:dev": "dotenv -e .env.development -- npx prisma migrate reset"
 	},
 	"prisma": {
-		"seed": "bun run prisma/seed.ts"
+		"seed": "tsx prisma/seed.ts"
 	},
 	"dependencies": {
 		"@prisma/client": "^6.16.3",
@@ -64,16 +65,17 @@
 		"@types/pino-pretty": "^5.0.0",
 		"@types/supertest": "^6.0.2",
 		"@types/swagger-ui-express": "^4.1.8",
+		"dotenv-cli": "^11.0.0",
 		"glob": "^11.0.3",
 		"jest": "^30.2.0",
 		"prisma": "^6.16.3",
-		"prisma-test-utils": "^0.4.1",
 		"prisma-zod-generator": "^1.27.3",
 		"supertest": "^7.1.0",
 		"swagger-ui-express": "^5.0.1",
 		"ts-jest": "^29.4.5",
 		"ts-node-dev": "^2.0.0",
 		"tsc-alias": "^1.8.16",
+		"tsx": "^4.20.6",
 		"typescript": "^5.9.3"
 	}
 }

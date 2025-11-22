@@ -1,7 +1,7 @@
 services:
   db:
     image: postgres:16-alpine
-    container_name: crud_db
+    container_name: transfer_db
     environment:
       POSTGRES_DB: app
       POSTGRES_USER: app
@@ -18,7 +18,7 @@ services:
 
   redis:
     image: redis:7-alpine
-    container_name: crud_redis
+    container_name: transfer_redis
     ports:
       - "6380:6379"
     healthcheck:
@@ -29,7 +29,7 @@ services:
 
   app:
     build: .
-    container_name: crud_app
+    container_name: transfer_app
     env_file:
       - .env.docker
     depends_on:
@@ -42,7 +42,7 @@ services:
     # command: ["bun", "src/index.ts"]
     command: >
       sh -c "
-        bunx prisma migrate deploy &&
+        bun run prisma_deploy:docker &&
         echo '✔ Migrações aplicadas com sucesso!' &&
         bun run start
       "

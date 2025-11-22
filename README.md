@@ -101,7 +101,7 @@ Siga os passos abaixo para configurar e rodar o projeto diretamente na sua máqu
 
 ### 1. Variáveis de Ambiente
 
-Crie um arquivo `.env.development` na raiz do projeto, copiando o exemplo do arquivo `.env.example` (se existir) ou usando o modelo abaixo. Substitua os valores conforme necessário.
+Crie um arquivo `.env.development` na raiz do projeto, copiando o exemplo do arquivo `env.example` (se existir) ou usando o modelo abaixo. Substitua os valores conforme necessário. (não se esqueça do ponto antes do env)
 
 ```env
 # Variáveis da Aplicação
@@ -109,7 +109,7 @@ NODE_ENV=development
 PORT=3000
 
 # URL de Conexão com o Banco de Dados (PostgreSQL)
-DATABASE_URL="postgresql://docker:docker@localhost:5432/transfer?schema=public"
+DATABASE_URL="postgresql://postgres:suasenhaaqui@localhost:5432/transfer-back?schema=public"
 
 # URL de Conexão com o Redis
 REDIS_HOST=127.0.0.1
@@ -123,6 +123,9 @@ REDIS_PASSWORD=
 Você pode usar `npm`, `yarn` ou `bun`. Escolha um e execute o comando correspondente na raiz do projeto:
 
 ```bash
+# Com NPM
+npm install
+
 # Com Yarn
 yarn install
 
@@ -153,6 +156,9 @@ Assumindo que você tenha uma instância do PostgreSQL rodando localmente, execu
 Para iniciar o servidor em modo de desenvolvimento (com hot-reload), utilize o script `dev`:
 
 ```bash
+# Com NPM
+npm run dev
+
 # Com Yarn
 yarn dev
 
@@ -166,16 +172,46 @@ bun dev
 
 O arquivo `package.json` contém scripts úteis para o desenvolvimento:
 
-- `dev`: Inicia o servidor em modo de desenvolvimento.
-- `build`: Compila o código TypeScript para JavaScript.
-- `start`: Inicia o servidor em modo de produção (requer `build` prévio).
-- `test`: Executa a suíte de testes com Jest.
-- `lint:check`: Verifica se há problemas de formatação e estilo.
+### 🧪 Desenvolvimento
+- **`dev`**: Inicia o servidor em modo de desenvolvimento com recarregamento automático (`tsx watch`) e variáveis de ambiente de desenvolvimento.
+- **`dev:swagger`**: Executa o gerador de documentação Swagger em modo de desenvolvimento com hot reload.
+
+### 🛠️ Build & Produção
+- **`build`**: Compila o código TypeScript para JavaScript e ajusta caminhos com `tsc-alias`.
+- **`start`**: Inicia o servidor em modo de produção usando os arquivos compilados em `dist`.
+- **`swagger:prod`**: Gera a documentação Swagger para produção.
+
+### 🧰 Geração & Utilitários
+- **`generate:module`**: Executa o script de geração automática de módulos. 
+#### Exemplo de uso
+
+```bash
+ npm run generate:module user
+```
+
+Esse comando deve criar 4 arquivos (**schema**, **service**, **controller** e **routes**) do módulo user
+
+- **`lint`**: Formata o código com Biome e executa a análise de lint.
+
+### 🗄️ Prisma (Banco de Dados)
+- **`prisma_studio:dev`**: Abre o Prisma Studio usando variáveis de ambiente de desenvolvimento.
+- **`prisma_studio:test`**: Abre o Prisma Studio com as configurações de teste.
+- **`prisma_studio:prod`**: Abre o Prisma Studio configurado para produção.
+- **`prisma_migrate:dev`**: Executa migrações no ambiente de desenvolvimento.
+- **`prisma_deploy:dev`**: Aplica migrações já geradas no ambiente de desenvolvimento.
+- **`prisma_deploy:prod`**: Aplica migrações no ambiente de produção.
+- **`prisma_reset:dev`**: Reseta o banco de desenvolvimento.
 
 ---
 
 ## 📚 Documentação da API
 
-Quando a aplicação está em execução, a documentação interativa do Swagger fica disponível. Você pode acessá-la para visualizar e testar todos os endpoints:
+Quando a aplicação está em execução, a documentação interativa do Swagger fica disponível. Você pode acessá-la para visualizar e testar todos os endpoints, existem 2 opções de layout:
 
-[http://localhost:3000/api-docs](http://localhost:3000/api-docs)
+- ### Swagger UI
+
+    [http://localhost:3000/doc](http://localhost:3000/doc)
+
+- ### Scalar (design mais moderno)
+
+    [http://localhost:3000/doc-scalar](http://localhost:3000/doc-scalar)

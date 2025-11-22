@@ -17,13 +17,14 @@ COPY tsconfig.json ./
 COPY prisma ./prisma
 COPY src ./src
 COPY scripts ./scripts
-#COPY swagger-output.json ./swagger-output.json
+COPY swagger-output.json ./swagger-output.json
 
 # Gera cliente Prisma
 RUN bunx prisma generate
 
-# Gera documentação Swagger
-RUN bun run swagger:prod
 
 # Gera build de produção
 RUN bun run build
+
+# Gera documentação Swagger
+RUN node dist/scripts/swagger.prod.js
