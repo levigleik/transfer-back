@@ -12,6 +12,7 @@
 		"generate:module": "node scripts/generateModules.mjs",
 		"lint": "npx biome format --write . && npx biome lint",
 		"start": "node dist/src/index.js",
+		"start:bun": "bun run dist/src/index.js",
 		"swagger:prod": "tsx scripts/swagger.prod.ts",
 		"test": "dotenv -e .env.test -- npx jest --detectOpenHandles --runInBand",
 		"prisma_studio:test": "dotenv -e .env.test -- npx prisma studio",
