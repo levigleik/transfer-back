@@ -79,7 +79,7 @@ A forma mais simples e rápida de subir todo o ambiente (API, Postgres e Redis) 
     git clone https://github.com/levigleik/transfer-back
     cd transfer-back
     ```
-2. **Crie o arquivo `.env.docker` ou copie de `env.docker.sample`
+2. Crie o arquivo `.env.docker` ou copie de `env.docker.sample`
 
 3.  **Suba os containers:**
     Execute o comando a seguir na raiz do projeto. Ele irá construir a imagem da API e iniciar os serviços de banco de dados e cache em background.
@@ -121,16 +121,25 @@ REDIS_PASSWORD=
 
 ### 2. Instalação de Dependências
 
-Você pode usar `npm`, `yarn` ou `bun`. Escolha um e execute o comando correspondente na raiz do projeto:
+#### Instalar bun:
+- Linux & macOS: 
 
 ```bash
-# Com NPM
-npm install
+curl -fsSL https://bun.sh/install | bash
+```
 
-# Com Yarn
-yarn install
+- Windows: 
+```bash
+powershell -c "irm bun.sh/install.ps1 | iex"
+```
 
-# Com Bun
+Para garantir a compatibilidade, atualize o bun executando ou instalando novamente no passo acima:
+```bash
+bun upgrade
+```
+## Execute o comando correspondente na raiz do projeto:
+
+```bash
 bun install
 ```
 
@@ -157,12 +166,6 @@ Assumindo que você tenha uma instância do PostgreSQL rodando localmente, execu
 Para iniciar o servidor em modo de desenvolvimento (com hot-reload), utilize o script `dev`:
 
 ```bash
-# Com NPM
-npm run dev
-
-# Com Yarn
-yarn dev
-
 # Com Bun
 bun dev
 ```
@@ -201,6 +204,7 @@ Esse comando deve criar 4 arquivos (**schema**, **service**, **controller** e **
 - **`prisma_migrate:dev`**: Executa migrações no ambiente de desenvolvimento.
 - **`prisma_deploy:dev`**: Aplica migrações já geradas no ambiente de desenvolvimento.
 - **`prisma_deploy:prod`**: Aplica migrações no ambiente de produção.
+- **`prisma_reset:docker`**: Reseta o banco do docker.
 - **`prisma_reset:dev`**: Reseta o banco de desenvolvimento.
 
 ---
