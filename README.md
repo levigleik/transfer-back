@@ -79,8 +79,9 @@ A forma mais simples e rápida de subir todo o ambiente (API, Postgres e Redis) 
     git clone https://github.com/levigleik/transfer-back
     cd transfer-back
     ```
+2. **Crie o arquivo `.env.docker` ou copie de `env.docker.sample`
 
-2.  **Suba os containers:**
+3.  **Suba os containers:**
     Execute o comando a seguir na raiz do projeto. Ele irá construir a imagem da API e iniciar os serviços de banco de dados e cache em background.
     ```bash
     docker-compose up -d
