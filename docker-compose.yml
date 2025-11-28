@@ -44,8 +44,6 @@ services:
       sh -c "
         bun run prisma_deploy:docker &&
         echo '✔ Migrações aplicadas com sucesso!' &&
-        bun run prisma db seed &&
-        echo '✔ Seed executado com sucesso!' &&
         bun run start
       "
 
