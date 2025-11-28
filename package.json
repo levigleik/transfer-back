@@ -20,13 +20,13 @@
 		"prisma_studio:prod": "bun run --env-file=.env.production bunx prisma studio",
 		"prisma_migrate:dev": "bun run --env-file=.env.development bunx prisma migrate dev",
 		"prisma_deploy:dev": "bun run --env-file=.env.development bunx prisma migrate deploy",
-		"prisma_deploy:prod": "bun run --env-file=.env.production bunx prisma migrate deploy",		
+		"prisma_deploy:prod": "bun run --env-file=.env.production bunx prisma migrate deploy",
 		"prisma_deploy:docker": "bun run --env-file=.env.docker bunx prisma migrate deploy",
 		"prisma_reset:docker": "bun run --env-file=.env.docker bunx prisma migrate reset",
 		"prisma_reset:dev": "bun run --env-file=.env.development bunx prisma migrate reset"
 	},
 	"prisma": {
-		"seed": "tsx prisma/seed.ts"
+		"seed": "bun run prisma/seed.ts"
 	},
 	"dependencies": {
 		"@prisma/client": "^6.16.3",

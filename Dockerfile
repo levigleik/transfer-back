@@ -22,7 +22,6 @@ COPY swagger-output.json ./swagger-output.json
 # Gera cliente Prisma
 RUN bunx prisma generate
 
-
 # Gera build de produção
 RUN bun run build
 
