@@ -17,6 +17,7 @@
 		"test": "bun run --env-file=.env.test npx jest --detectOpenHandles --runInBand",
 		"prisma_studio:test": "bun run --env-file=.env.test bunx prisma studio",
 		"prisma_studio:dev": "bun run --env-file=.env.development bunx prisma studio",
+		"prisma_studio:docker": "bun run --env-file=.env.docker bunx prisma studio",
 		"prisma_studio:prod": "bun run --env-file=.env.production bunx prisma studio",
 		"prisma_migrate:dev": "bun run --env-file=.env.development bunx prisma migrate dev",
 		"prisma_deploy:dev": "bun run --env-file=.env.development bunx prisma migrate deploy",
@@ -68,17 +69,16 @@
 		"@types/pino-pretty": "^5.0.0",
 		"@types/supertest": "^6.0.2",
 		"@types/swagger-ui-express": "^4.1.8",
-		"dotenv-cli": "^11.0.0",
 		"glob": "^11.0.3",
 		"jest": "^30.2.0",
 		"prisma": "^6.16.3",
+		"prisma-test-utils": "^0.4.1",
 		"prisma-zod-generator": "^1.27.3",
 		"supertest": "^7.1.0",
 		"swagger-ui-express": "^5.0.1",
 		"ts-jest": "^29.4.5",
 		"ts-node-dev": "^2.0.0",
 		"tsc-alias": "^1.8.16",
-		"tsx": "^4.20.6",
 		"typescript": "^5.9.3"
 	}
 }
