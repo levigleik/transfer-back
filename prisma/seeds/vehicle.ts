@@ -1,12 +1,12 @@
+import { plateGenerator } from "@/lib/plate-generator";
 import type { CreateVehicleDTO } from "@/modules/vehicle/vehicle.schemas";
-import { plateGenerator } from "@/plate-generator";
 import { faker } from "@faker-js/faker/locale/pt_BR";
 import { PlateType } from "@prisma/client";
 import { brand } from "./brand";
 import { category } from "./category";
+import { classification } from "./classification";
 import { company } from "./company";
 import { gas } from "./gas";
-import { classification } from "./classification";
 import { status } from "./status";
 
 const plateTypes = Object.keys(PlateType);

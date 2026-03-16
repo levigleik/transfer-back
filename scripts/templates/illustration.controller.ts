@@ -109,7 +109,7 @@ const updateIllustration = async (
 	const data = req.body as Partial<UpdateIllustrationDTO>;
 	const illustration = await illustrationService.update({
 		data: {
-			level: data.level,
+			name: data.name,
 		},
 		where: { id },
 	});

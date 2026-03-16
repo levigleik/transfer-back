@@ -19,9 +19,6 @@ app.use(
 );
 
 app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile));
-app.get("/swagger-output.json", (_, res) => {
-	res.json(swaggerFile);
-});
 app.use(
 	"/doc-scalar",
 	apiReference({
